@@ -19,6 +19,9 @@ export class EmployeesService {
   obtenerEmpleado(){
     return this.http.get<RespuestaEmpleados>(`${this.url}/listaUsuariosByIdPerfil/4`);
   }
+  obtenerAdministradores(){
+    return this.http.get<RespuestaEmpleados>(`${this.url}/listaUsuariosByIdPerfil/3`);
+  }
   obtenerEmpleadoxID(idEmpleado: number){
     return this.http.get<Empleado>(`${this.url}/usuario/${idEmpleado}`).pipe(
       map(res=>res["data"]

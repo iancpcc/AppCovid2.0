@@ -7,6 +7,8 @@ import { HotmapComponent } from '../components/hotmap/hotmap.component';
 import { LoginGuard } from '../guards/login.guard';
 import { MapboxComponent } from '../components/mapbox/mapbox.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MaintenanceComponent } from './employees/maintenance/maintenance.component';
+import { AdminsComponent } from './admins/admins.component';
 
 
 
@@ -15,8 +17,9 @@ const pagesRoutes: Routes = [
   children:[
   { path: 'dashboard', component: DashboardComponent },
   { path: 'empleados', component: EmployeesComponent },
-  { path: 'empleado/:id', component: EmployeesComponent },
-  { path: 'empleado', component: EmployeesComponent },
+  { path: 'empleado/:id', component: MaintenanceComponent },
+  { path: 'empleado', component: MaintenanceComponent },
+  { path: 'administradores', component: AdminsComponent },
   { path: 'reportes', component: ReportsComponent },
   { path: 'mapbox', component: MapboxComponent },
   { path: 'heatmap', component: HotmapComponent },

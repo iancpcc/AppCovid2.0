@@ -33,8 +33,10 @@ export class LoginService {
           }
          ),
          map(rol=>{
-          if(rol[0]=='Administrador' || rol[1]=='Administrador') 
-          {
+           
+           if(rol[0]=='Administrador' || rol[1]=='Administrador') 
+           {
+            console.log('rol',rol);
             return rol;
           }
           this.logout();

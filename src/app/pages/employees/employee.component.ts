@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmployeesService } from '../../services/service.index';
 import { Empleado } from 'src/app/interfaces/empleado.model';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-employees',
   templateUrl: './employee.component.html',
@@ -14,9 +14,31 @@ constructor(private router:Router,private empleados:EmployeesService) { }
 persons: Empleado[] = [];
 buscando=false;
 cargando=true;
+idPerson=0;
   ngOnInit() {
     this.cargarEmpleados();
 }
+
+
+Options(event:string){
+  console.log('este id es :',this.idPerson);
+  console.log('este id es :',event);
+  
+  if(event=='edit'){
+   this.router.navigate([`/empleado/${this.idPerson}`])
+  }
+  else{
+    this.deleteEmployee(this.idPerson);
+  }
+
+  
+}
+
+getPerson(event:number){
+  
+this.idPerson=event;
+}
+
 buscarUsuario(termino:string){
 
   this.buscando=true;
@@ -63,6 +85,8 @@ deleteEmployee(id:number){
   }).then((result) => {
     if (result.value) {
       this.empleados.eliminarEmpleado(id).subscribe(res=>{
+        console.log('eliminar',res);
+        
         if(res!=null){
 
           Swal.fire(

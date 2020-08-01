@@ -1,0 +1,27 @@
+<table  class="table table-striped ">
+    <thead>
+        <tr>
+            <th style="width:20%;">Cedula</th>
+            <th style="width:20%;">Name</th>
+            <th style="width:20%;">Apellido</th>
+            <th style="width:25%">Direccion</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        <tr *ngFor="let employee of persons;"  >
+            <td>{{employee.cedulaUsuario}}</td>
+            <td>{{employee.nombresUsuario}}</td>
+            <td>{{employee.apellidosUsuario}}</td>
+            <td>{{employee.direccionUsuario}}</td>
+            <td class="table-action ">
+               <a  (click)="emitirId(employee.idUsuario,'edit')"><i class=" far fa-edit pr-1" style="font-size: 20px;"></i></a>
+                 <a   (click)="emitirId(employee.idUsuario,'delete')"><i class=" far fa-trash-alt pl-1"  style="font-size: 20px;"></i></a>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+

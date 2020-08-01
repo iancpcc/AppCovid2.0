@@ -43,7 +43,9 @@ public usuario:UsuarioModel
       this.login.auth(this.usuario)
       .subscribe((res:string[])=>{
       let cantidadRoles=res.length;
-        if(cantidadRoles>1){
+      console.log('roles 1',res);
+      
+        if(cantidadRoles==1){
         this.router.navigateByUrl('/dashboard');
         Swal.close();
         }

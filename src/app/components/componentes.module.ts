@@ -14,6 +14,7 @@ import { ChartsModule } from 'ng2-charts';
 import { BarchartComponent } from './barchart/barchart.component';
 import { DoughnutchartComponent } from './doughnutchart/doughnutchart.component';
 import { PiechartComponent } from './piechart/piechart.component';
+import { TableComponent } from './table/table.component';
 @NgModule({
   declarations: [
     HotmapComponent,
@@ -23,7 +24,8 @@ import { PiechartComponent } from './piechart/piechart.component';
     SplineComponent,
     BarchartComponent,
     DoughnutchartComponent,
-    PiechartComponent
+    PiechartComponent,
+    TableComponent
   ],
   exports:[
     HotmapComponent,
@@ -33,7 +35,8 @@ import { PiechartComponent } from './piechart/piechart.component';
     SplineComponent,
     BarchartComponent,
     DoughnutchartComponent,
-    PiechartComponent
+    PiechartComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,

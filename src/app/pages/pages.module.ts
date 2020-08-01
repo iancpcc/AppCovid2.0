@@ -13,6 +13,9 @@ import { ReportsComponent } from './reports/reports.component';
 import { ComponentesModule } from '../components/componentes.module';
 import { MaintenanceComponent } from './employees/maintenance/maintenance.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminsComponent } from './admins/admins.component';
+import { AddemployeeComponent } from './addemployee/addemployee.component';
+import { EditemployeeComponent } from './editemployee/editemployee.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ProfileComponent } from './profile/profile.component';
     MapsComponent,
     ReportsComponent,
     MaintenanceComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminsComponent,
+    AddemployeeComponent,
+    EditemployeeComponent
   ],
     exports: [
       DashboardComponent
