@@ -1,0 +1,66 @@
+<div class="container-fluid p-0">
+
+    <h1 class="h3 mb-3">Reportes</h1>
+
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="card flex-fill w-100">
+                <div class="card-header">
+                    <h5 class="card-title">Ciudadanos registrados por Genero</h5>
+                    <h6 class="card-subtitle text-muted"></h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                       <app-doughnutchart></app-doughnutchart>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Estadistica de Enfermos</h5>
+                    <h6 class="card-subtitle text-muted"></h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                       <app-barchart></app-barchart>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Curva de Enfermos</h5>
+                    <h6 class="card-subtitle text-muted"></h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart chart-sm">
+                        <app-spline></app-spline>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Enfermos Y Curados</h5>
+                    <h6 class="card-subtitle text-muted"></h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart chart-sm">
+                        <app-piechart></app-piechart>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+
+    </div>
+
+</div>

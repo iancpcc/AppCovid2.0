@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+        <app-sidebar></app-sidebar>
+
+    </nav>
+
+    <div class="main">
+        <app-header></app-header>
+
+        <main class="content">
+
+           <router-outlet></router-outlet>
+        </main>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row text-muted">
+                    <div class="col-6 text-left">
+                        <p class="mb-0">
+                            <a routerLink='/dashboard' class="text-muted"><strong>Municipio de Ambato 2020</strong></a> &copy;
+                        </p>
+                    </div>
+                   
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+

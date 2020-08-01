@@ -1,0 +1,188 @@
+<div class="container-fluid p-0">
+
+    <div class="row mb-2 mb-xl-3">
+
+        <div class="col-auto ml-auto text-right mt-n1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+                    <li class="breadcrumb-item"><a routerLink='/dashboard'>Municipio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-xxl-5 d-flex">
+            <div class="w-100">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card" 
+                        style=" border-left: rgb(236, 60, 60) 5px solid;height: 10rem;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Total Usuarios</h5>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <div class="avatar">
+                                            <div class="avatar-title rounded-circle bg-primary-light">
+                                                <i class="fas fa-user-shield" style="color: springgreen"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <app-spinner *ngIf="cargando"></app-spinner>
+
+                                <h1 class="display-5 mt-1 mb-3" *ngIf="!cargando">{{totalUsuario}}</h1>
+                               
+                            </div>
+                        </div>
+                        <div class="card" style=" border-left: rgb(228, 147, 43) 5px solid;height: 10rem;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Registrados Hoy</h5>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <div class="avatar">
+                                            <div class="avatar-title rounded-circle bg-primary-light">
+                                                <i class="fas fa-user-friends" style="color: skyblue;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <app-spinner *ngIf="cargando"></app-spinner>
+                                <h1 class="display-5 mt-1 mb-3"  *ngIf="!cargando">{{totalRegistradosHoy}}</h1>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" >
+                        <div class="card" style=" border-left: rgb(64, 226, 43) 5px solid;height: 10rem; ">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Total Mensual</h5>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <div class="avatar">
+                                            <div class="avatar-title rounded-circle bg-primary-light">
+                                                <i class="far fa-calendar-check" style="color:  rgb(231, 175, 122);"></i>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <app-spinner *ngIf="cargando"></app-spinner>
+                                
+                                <h1 class="display-5 mt-1 mb-3" *ngIf="!cargando">{{TotalRegistradosMensual}}</h1>
+                               
+                            </div>
+                        </div>
+                        <div class="card " style=" border-left: blueviolet 5px solid;height: 10rem; ">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Enfermos</h5>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <div class="avatar">
+                                            <div class="avatar-title rounded-circle bg-primary-light">
+                                                <i class="fas fa-file-medical" style="color: red;"></i>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <app-spinner *ngIf="cargando"></app-spinner>
+                                <h1 class="display-5 mt-1 mb-3" *ngIf="!cargando">{{totalUsuario}}</h1>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-xxl-7">
+            <div class="card flex-fill w-100 ">
+                <div class="card-header pb-0">
+
+                    <h5 class="card-title mb-0">Mapbox Covid 2020</h5>
+                </div>
+                <div class="card-body py-3 pt-0 pb-3" style='height: 310px;'>
+                        <app-mapbox></app-mapbox>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
+            <div class="card flex-fill w-100">
+                <div class="card-header">
+
+                    <h5 class="card-title mb-0">Estadisticas</h5>
+                </div>
+                <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                        <div class="py-3">
+                            <div class="chart chart-xs">
+                                <canvas id="chartjs-dashboard-pie"></canvas>
+                            </div>
+                        </div>
+
+                        <table class="table mb-0">
+                            <tbody>
+                                <tr>
+                                    <td>Fallecidos</td>
+                                    <td class="text-right">1500</td>
+                                </tr>
+                                <tr>
+                                    <td>Enfermos</td>
+                                    <td class="text-right">1200</td>
+                                </tr>
+                                <tr>
+                                    <td>Recuperados</td>
+                                    <td class="text-right">500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+            <div class="card flex-fill w-100">
+                <div class="card-header">
+
+                    <h5 class="card-title mb-0">Mapa de calor</h5>
+                </div>
+                <div class="card-body px-4 pt-0" style="height: 340px;">
+                   <app-hotmap></app-hotmap>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
+            <div class="card flex-fill">
+                <div class="card-header">
+
+                    <h5 class="card-title mb-0">Calendario</h5>
+                </div>
+                <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                        <div class="chart">
+                            <div id="datetimepicker-dashboard"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

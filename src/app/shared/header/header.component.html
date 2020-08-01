@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand navbar-light navbar-bg">
+    <a class="sidebar-toggle d-flex">
+<i class="hamburger align-self-center"></i>
+</a>
+
+    <form class="form-inline d-none d-sm-inline-block">
+        <div class="input-group input-group-navbar">
+            <input type="text" class="form-control" placeholder="Buscar" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn" type="button">
+    <i class="align-middle" data-feather="search"></i>
+  </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="navbar-collapse collapse">
+        <ul class="navbar-nav navbar-align">
+            <li class="nav-item dropdown">
+                <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-toggle="dropdown">
+                    <div class="position-relative">
+                        <i class="fas fa-tachometer-alt" style="color: #fba675;"></i>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
+                    <div class="dropdown-menu-header">
+                       Accesos rápidos
+                    </div>
+                    <div class="list-group">
+                        <a routerLink='/empleados' class="list-group-item">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-2">
+                                    <i class="far fa-user" style="color: rgb(224, 206, 105);"></i>
+                                </div>
+                                <div class="col-10">
+                                    <div class="text-dark">Empleados</div>
+                                    <div class="text-muted small mt-1">Gestione empleados de su empresa.</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a routerLink='/reportes' class="list-group-item">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-2">
+                                    <i class="far fa-chart-bar" style="color: rgb(126, 183, 221);"></i>
+                                </div>
+                                <div class="col-10">
+                                    <div class="text-dark">Reportes</div>
+                                    <div class="text-muted small mt-1">Visualice los reportes de infectados</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a routerLinkActive routerLink='/heatmap' class="list-group-item">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-2">
+                                    <i class="fas fa-map-marker-alt" style="color: rgb(233, 103, 86);" ></i>
+                                </div>
+                                <div class="col-10">
+                                    <div class="text-dark">Mapas de Calor </div>
+                                    <div class="text-muted small mt-1">Observe las zonas de mayor influencia</div>
+                                </div>
+                            </div>
+                        </a>
+                       
+                    </div>
+                   
+                </div>
+            </li>
+          
+            <li class="nav-item dropdown">
+                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+    <i class="align-middle" data-feather="settings"></i>
+  </a>
+
+                <!-- <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+    <img src="../../../assets/img/avatar.png" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark">Admin</span>
+  </a> -->
+                <a class="nav-link dropdown-toggle d-none d-sm-inline-block"  data-toggle="dropdown">
+                    <img src="../../../assets/img/admin.png" class="avatar img-fluid rounded mr-1" />  <span class="text-dark">Admin</span>
+  </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" routerLink="/profile"><i class="align-middle mr-1" data-feather="user"></i> Perfil</a>
+                    <div class="dropdown-divider"></div>
+                    <!-- <a class="dropdown-item" href="pages-settings.html"><i class="align-middle mr-1" data-feather="settings"></i> Settings & Privacy</a> -->
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="salir()" >Salir</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

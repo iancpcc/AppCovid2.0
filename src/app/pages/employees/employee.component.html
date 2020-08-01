@@ -1,0 +1,67 @@
+<div class="container-fluid p-0">
+    <div class="row mb-2 mb-xl-3">
+        <div class="col-auto d-none d-sm-block">
+            <h3><strong>Empleados</strong></h3>
+        </div>
+
+        <div class="col-auto ml-auto text-right mt-n1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+                    <li class="breadcrumb-item"><a routerLink='/dashboard'>Municipio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Empleados</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-xl-12">
+            <div class="card">
+                <div class="card-header">
+            <!-- <h5 class="card-title">Listado de Empleados</h5> -->
+            <a class="btn btn-light" [routerLink]="['/empleado']" >
+                <i class="fas fa-plus"></i> Nuevo
+            </a>
+                </div>
+                <div class="row ">
+                    <div class="col-12 col-xl-12 ">
+                    <form class="form-inline mt-2 ml-4  "  *ngIf="!cargando">
+                        <input #input (keyup)="buscarUsuario(input.value)" class="form-control mr-sm-2 "  style="width: 20rem;" type="search" placeholder="Buscar" aria-label="Search">
+                      </form>
+                    </div>
+                </div>
+                <div class="card-body pt-2 ml-2">
+              <app-spinner  *ngIf="cargando" ></app-spinner>
+
+              <app-spinner  *ngIf="buscando" ></app-spinner>
+              
+                <table  class="table table-striped " *ngIf="!cargando">
+									<thead>
+										<tr>
+											<th style="width:20%;">Cedula</th>
+											<th style="width:20%;">Name</th>
+											<th style="width:20%;">Apellido</th>
+											<th style="width:25%">Direccion</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+                                       
+										<tr *ngFor="let employee of persons;"  >
+											<td>{{employee.cedulaUsuario}}</td>
+											<td>{{employee.nombresUsuario}}</td>
+											<td>{{employee.apellidosUsuario}}</td>
+											<td>{{employee.direccionUsuario}}</td>
+											<td class="table-action ">
+												<a [routerLink]="['/empleado',employee.idUsuario]"><i class=" far fa-edit pr-1" style="font-size: 20px;"></i></a>
+												<a  (click)=deleteEmployee(employee.idUsuario)><i class=" far fa-trash-alt pl-1"  style="font-size: 20px;"></i></a>
+											</td>
+										</tr>
+										
+									</tbody>
+                                </table>
+                	
+							</div>
+                        </div>
+					</div>
+
+</div>

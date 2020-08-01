@@ -1,0 +1,69 @@
+
+    <div class="sidebar-content js-simplebar ">
+        <a class="sidebar-brand " routerLink='/dashboard'>
+            <img src="../../../assets/img/logo.png" class="avatar img-fluid rounded mr-1">
+            <span class=" align-middle card-title text-white">Municipio de Ambato</span>
+</a>
+
+        <ul class="sidebar-nav ">
+            <li class="sidebar-header">
+                Menu
+            </li>
+            <li class="sidebar-item" >
+             <li class="sidebar-item  " routerLinkActive="active">
+                <a class="sidebar-link"  routerLink="/dashboard">
+      <i class="fas fa-home align-middle"></i> <span class="align-middle">Inicio</span>
+    </a>
+            </li>
+            <li class="sidebar-item" routerLinkActive="active">
+                <a class="sidebar-link" routerLink="/profile">
+      <i class="align-middle" data-feather="user"></i> <span class="align-middle">Perfil</span>
+    </a>
+            </li>
+            
+					<!-- <li class="sidebar-item" >
+						<a class="sidebar-link" href="#">
+              <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Configuración</span>
+            </a>
+					</li> -->
+
+            <li class="sidebar-header">
+                Mantenimiento
+            </li>
+
+            <li class="sidebar-item" routerLinkActive="active" >
+                <a href="#users" data-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Usuarios</span>
+    </a>
+                <ul id="users" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" routerLink='/empleados'>Empleados</a></li>
+                   
+                </ul>
+            </li>
+
+           
+
+            <li class="sidebar-header">
+                Mapas y Reportes
+            </li>
+
+            <li class="sidebar-item"  routerLinkActive="active">
+                <a class="sidebar-link" routerLink='/reportes'>
+                    <i class="fas fa-chart-line "></i> <span class="align-middle">Reportes</span>
+    </a>
+            </li>
+
+            
+
+            <li class="sidebar-item"  routerLinkActive="active">
+                <a href="#maps" data-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Mapas</span>
+    </a>
+                <ul id="maps" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" routerLinkActive routerLink='/mapbox'>Mapa 3D</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" routerLinkActive routerLink='/heatmap'>Mapa de Calor</a></li>
+                   
+                </ul>
+            </li>
+        </ul>
+    </div>

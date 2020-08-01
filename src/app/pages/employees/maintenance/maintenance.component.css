@@ -1,0 +1,33 @@
+.boton_Registrar{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #8a8888;
+    background-color: #d2eff3;
+    border-radius: 6px;
+    border: 2px solid #cdcdce;
+  }
+  .boton_Registrar:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+  }
+  #contenedor{
+    min-height: 100vh!important;
+    width: 90%;
+    font-size: 16px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;  
+    
+}
+.textos{
+    caret-color: pink;
+    border:1px;
+    border-radius: 10px;
+
+}
+.tdButton{
+    justify-content: center;
+}
+

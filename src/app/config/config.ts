@@ -1,0 +1,1 @@
+export const url_services='http://localhost/backend-vinculacion/public/api';

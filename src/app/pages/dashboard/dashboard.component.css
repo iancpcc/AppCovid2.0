@@ -1,0 +1,7 @@
+.bg-primary-light {
+    background: var(--white);
+}
+
+.line{
+    border-left: blueviolet 5px solid ;
+}
