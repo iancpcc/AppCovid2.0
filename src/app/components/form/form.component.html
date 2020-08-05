@@ -1,12 +1,10 @@
-<app-spinner *ngIf="cargando"></app-spinner>
-
 <div class="col-md-12" >
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">{{title}}</h5>
             <hr>
         </div>
-        <div class="card-body pt-0 mt-0" *ngIf="!cargando">
+        <div class="card-body pt-0 mt-0" >
             <form  (ngSubmit)="postEmpleado(empleado)"
             #empleado="ngForm">
                 <div class="form-row">
@@ -104,7 +102,7 @@
                          empleado.controls['direccionUsuario'].errors">Ingrese su Dirección</span>
                 </div>
               
-           <!-- Direccion -->
+           <!-- Fecha -->
                     <div class=" col-md-12" style="font-size: 12px">
                         <mat-form-field appearance="outline" style="width: 20rem" >
                         <mat-label style="font-weight: 500;">Fecha de Nacimiento</mat-label>
@@ -121,9 +119,11 @@
                     </div>
                    
                 </div>
-                <div class="row" *ngIf="action=='insert'" >
-                <!--  Usurios -->
-                
+                <!-- <div class="row" *ngIf="action=='insert'" > -->
+                <div class="row"  >
+                <!--  Usuarios -->
+
+                                  
                     <div class="form-group col-md-4" >
                         <label for="lUser">Usuario</label>
                         <input type="text"
@@ -139,46 +139,53 @@
                         empleado.controls['user'].errors">Ingrese el usuario </span>
                    
                 </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="action=='update'">
                     <div class="custom-control custom-switch ">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                        <input  type="checkbox" [(ngModel)]="nuevoEmpleado.administrador" name="tipoUsuarios" class="custom-control-input" id="customSwitch1">
                         <label class="custom-control-label" for="customSwitch1">Administrador</label>
                     </div>
 
                 </div>
                 
             </div>
+            <div class="row" *ngIf="action=='update'">
+                <div class="form-group col-md-4">
+                <input #check type="checkbox" name="cbox2" (click)="activatePassInput()" >
+                <label for="cbox2">Cambiar Contraseña</label>
+            </div>
+            </div>
 
-                    <div class="row" *ngIf="action=='insert'">
+                    <div class="row" *ngIf="checked || action=='insert'">
                     <div class="form-group col-md-4">
                         <label for="lpass">Contraseña</label>
                         <input type="password"
                         [(ngModel)]="nuevoEmpleado.password"
                         name="password" 
                         placeholder="Contraseña"
+                        (keyup)=" evaluarPass(empleado.controls['confirm'].value)"
                         class="form-control" 
                         minlength="8"
-                        required
+                       required
                         id="ippass">
                         <span class="text-danger" 
-                        *ngIf="empleado.submitted && 
+                        *ngIf="empleado.submitted && checked && 
                         empleado.controls['password'].errors">Ingrese la contraseña (Minimo 8 caracteres)  </span>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="lpasscon">Confirme Contraseña</label>
                         <input type="password"
                         minlength="8"
-                        [(ngModel)]='confirmText' 
+                        [(ngModel)]='confirmText'
                         #confirm
                         (keyup)="evaluarPass(confirm.value)"
                         name="confirm" 
+                        required
                         placeholder="Confirme Contraseña"
                         class="form-control" 
-                        required
                         id="idconfirm">
                         <span class="text-danger" 
-                        *ngIf="empleado.submitted && 
-                        empleado.controls['password'].errors">Ingrese la contraseña (Minino 8 caracteres) </span>
+                        *ngIf="empleado.submitted && checked &&
+                        empleado.controls['confirm'].errors">Ingrese la contraseña (Minino 8 caracteres) </span>
                
                         <span class="text-danger" *ngIf="!coinciden" >Las contraseñas no coinciden</span>
                     </div>

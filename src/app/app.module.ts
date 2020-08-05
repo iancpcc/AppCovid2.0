@@ -13,6 +13,8 @@ import { ServiceModule } from './services/service.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
 import { LoginGuard } from './guards/login.guard';
+import { EmployeesComponent } from './pages/employees/employee.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,7 @@ import { LoginGuard } from './guards/login.guard';
     ServiceModule,
     NoopAnimationsModule
   ],
-  providers:    [ DatePipe,LoginGuard ],
+  providers:    [ DatePipe,LoginGuard,EmployeesComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

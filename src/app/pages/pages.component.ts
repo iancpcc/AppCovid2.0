@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
 declare function init_plugins();
 declare function init_widgets();
 @Component({
@@ -15,8 +16,7 @@ export class PagesComponent implements OnInit {
  
   
   ngOnInit(): void {
-    
-    
+    console.log();
   }
 
 }

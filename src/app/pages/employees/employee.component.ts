@@ -21,8 +21,7 @@ idPerson=0;
 
 
 Options(event:string){
-  console.log('este id es :',this.idPerson);
-  console.log('este id es :',event);
+  
   
   if(event=='edit'){
    this.router.navigate([`/empleado/${this.idPerson}`])
@@ -117,5 +116,46 @@ deleteEmployee(id:number){
    
 }
   
+
+public messagePopup(type:string,message?:string){
+  switch (type) {
+  case 'success':
+  Swal.fire({
+    position: 'top',
+    icon: 'success',
+    title: 'Registro agregado con exito',
+    showConfirmButton: false,
+    timer: 1500
+  });
+  break;
+  case 'error':
+    Swal.fire({
+      title: 'Registro Fallido',
+      text: 'Revise los campos',
+      icon: 'error',
+      timer: 1000
+    });
+    break;
+    case 'custom':
+      Swal.fire({
+        title: message,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        },
+        showConfirmButton: false,
+        timer: 1000,
+        icon: 'warning'
+      })
+      break;
+   
+      default:
+      break;
+                }
+    
+  }
+
 
 }

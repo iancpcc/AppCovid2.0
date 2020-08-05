@@ -1,11 +1,9 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { EmployeesService } from '../../services/service.index';
 import { EmpleadoModel } from '../../models/empleado.model';
 import { DatePipe } from '@angular/common';
-
 
 @Component({
   selector: 'app-form',
@@ -13,44 +11,63 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./form.component.css'],
  
 })
-export class FormComponent implements OnInit,OnChanges {
+export class FormComponent implements OnInit {
 
-@Input() nuevoEmpleado:EmpleadoModel
-@Input() id=0
-@Input() action='update'
-cargando=true;
+@Input() nuevoEmpleado?:EmpleadoModel
+@Input() id?:number
+@Input() action:string
+@Input() title:string
+@Input() origen:string
+
+option=true;
+@Output() salidaEmpleado=new EventEmitter<EmpleadoModel>();
+
 coinciden:boolean=true;
 confirmText=''
-title="Formulario de Actualizacion"
-constructor(private empleado:EmployeesService, private router:Router,
+tipoUsuario=''
+checked=false
+constructor( private router:Router,
     private pipe:DatePipe) { }
 
   ngOnInit(): void {
-    this.nuevoEmpleado=new EmpleadoModel();
+    console.log('actioon',this.action);
     if(this.action=='insert'){
-    this.cargando=false;
-    this.title="Formulario de Registro"
+      this.checked=true;
+      this.nuevoEmpleado=new EmpleadoModel();
     }
   }
-  ngOnChanges(){
-    
-    if(this.nuevoEmpleado != undefined)
-    this.cargando=false;
-  }
-
   
-evaluarPass(pass:string){
+  cancelar(){
+    if(this.origen=='ep')
+   {
+    this.router.navigateByUrl('/empleados')
+   }
+  else{
+    this.router.navigateByUrl('/administradores')
 
-if(this.nuevoEmpleado.password !=pass  )
-  {
-this.coinciden=false
-return;
+  }
 }
-this.coinciden=true
+activatePassInput(){
+  this.checked=!this.checked;
+  console.log('atributo',this.checked);
+
+}
+
+evaluarPass(pass:string){
+  if(pass.length!=0){
+    
+    if(this.nuevoEmpleado.password !=pass  )
+      {
+    this.coinciden=false
+    return;
+    }
+    this.coinciden=true
+  }
 
 }
   validarForm(form:NgForm){
-
+    console.log('form',form);
+    
     if(form.invalid){
       return false
     }
@@ -83,10 +100,30 @@ this.coinciden=true
     }
   return myFormattedDate;  
   }
+  
+    public postEmpleado(form:NgForm){
+      console.log('checked',this.checked);
+     
+      if (this.validarForm(form) )
+      {
+        if(!this.checked){
+          this.salidaEmpleado.emit(this.nuevoEmpleado);
+        }
+        else {
+          if( this.validarContraseñas(form)){
+            this.salidaEmpleado.emit(this.nuevoEmpleado);
+          }
+        }
+    
+          }
+    else{
+      this.messagePopup("custom","Campos vacios ")
+    }
 
-   
+  }
+  
 
-    public messagePopup(type:string,message?:string){
+  public messagePopup(type:string,message?:string){
     switch (type) {
     case 'success':
     Swal.fire({
@@ -119,66 +156,12 @@ this.coinciden=true
           icon: 'warning'
         })
         break;
-
-    
-    
-
-       
+     
         default:
         break;
                   }
       
     }
-  
-    public postEmpleado(form:NgForm){
-
-      if (this.validarForm(form))
-      {
-        console.log('fecha',  this.nuevoEmpleado.fechaNacimiento);
-          if(this.action=='insert' && this.validarContraseñas(form)){
-        this.empleado.registrarEmpleado(this.nuevoEmpleado)
-        .subscribe(
-          res=>{
-        if(res!=null){
-          this.messagePopup('success');
-          this.router.navigate(['/empleados']);
-          return;
-        }
-        this.messagePopup('error');
-       },error=>{
-        this.messagePopup('custom',"Cedula o Correo Repetidos");
-      }
-      )
-      return;
-    
-      }
-   
-    else if(this.action=='update'){
-      console.log('Entro al update');
-      
-    this.empleado.actualizarEmpleado(this.nuevoEmpleado,this.id).subscribe(res=>
-      {
-      if(res!=null){
-      this.messagePopup("success");
-       this.router.navigate(['/empleados']);
-       return;
-     }
-     this.messagePopup('error');
-      },error=>{
-        this.messagePopup('custom','Cedula o Correo existentes');
-      });
-
-    }
-    
-  }
-    else{
-      this.messagePopup("custom","Campos vacios ")
-    }
 
   }
 
-  cancelar(){
-    this.router.navigateByUrl('/empleados')
-  }
-
-}

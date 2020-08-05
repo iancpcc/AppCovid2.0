@@ -17,8 +17,6 @@ export class TableComponent implements OnInit {
   }
 
   emitirId(id:number,action:string){
-    console.log('object',id);
-    console.log('object',action);
     
     this.idperson.emit(id);
     this.action.emit(action);

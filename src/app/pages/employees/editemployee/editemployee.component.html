@@ -1,0 +1,9 @@
+<app-spinner *ngIf="cargando"></app-spinner>
+<app-form  [id]="id" 
+[action]="accion" 
+[title]="titulo" 
+[origen]="ep"
+[nuevoEmpleado]="nuevoempleado" 
+(salidaEmpleado)="actualizar($event)"
+*ngIf="!cargando"
+></app-form>

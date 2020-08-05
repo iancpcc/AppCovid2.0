@@ -23,9 +23,11 @@ export class HotmapComponent implements OnInit,AfterViewInit,OnDestroy {
   }
   ngOnDestroy(){
   }
-
+  meses:number[]=[]
+  totales:number[]=[]
    ngOnInit(){
      _initMap();
+
      }
 
   

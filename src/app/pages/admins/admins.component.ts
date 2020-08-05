@@ -24,18 +24,18 @@ idPerson=0;
 cargarEmpleados(){
   this.empleados.obtenerAdministradores()
    .subscribe(ep=>{
+     
      this.persons.push(...ep.ListaUsuariosByIdPerfil);
+     
      this.cargando=false;
      this.buscando=false;
    })
 
   }
   Options(event:string){
-    console.log('este id es :',this.idPerson);
-    console.log('este id es :',event);
     
     if(event=='edit'){
-     this.router.navigate([`/empleado/${this.idPerson}`])
+     this.router.navigate([`/administrador/${this.idPerson}`])
     }
     else{
       this.deleteEmployee(this.idPerson);
@@ -56,9 +56,7 @@ cargarEmpleados(){
       confirmButtonText: 'Si, Borrar!'
     }).then((result) => {
       if (result.value) {
-        this.empleados.eliminarEmpleado(id).subscribe(res=>{
-          console.log('eliminar',res);
-          
+        this.empleados.eliminarAdministradores(id).subscribe(res=>{
           if(res!=null){
   
             Swal.fire(

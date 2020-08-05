@@ -14,7 +14,7 @@ import Swal from 'sweetalert2'
 export class LoginComponent implements OnInit {
 
 public usuario:UsuarioModel
-
+roles=3;
   constructor( private router:Router,
     private login:LoginService
     
@@ -26,7 +26,6 @@ public usuario:UsuarioModel
    ngOnInit(): void {
      init_plugins() ;
     this.usuario=new UsuarioModel;
-  
     }
   
     ingresar(form:NgForm){
@@ -45,7 +44,7 @@ public usuario:UsuarioModel
       let cantidadRoles=res.length;
       console.log('roles 1',res);
       
-        if(cantidadRoles==1){
+        if(cantidadRoles>=1){
         this.router.navigateByUrl('/dashboard');
         Swal.close();
         }

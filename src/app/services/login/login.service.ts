@@ -47,19 +47,7 @@ export class LoginService {
 
        )
       };
-        
- 
 
-  //  if(resp['access_token']){
-          //    let roles=resp['roles'];
-          //    map(roles=>{
-          //      console.log('respuesta',resp);
-          //      this.guardarToken(resp['access_token'])
-          //      return true;
-          //    })
-        //  }
-        //  return false;
- 
   logout(){
    localStorage.removeItem('token');
    localStorage.removeItem('expira');

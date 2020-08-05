@@ -8,10 +8,9 @@ export class EmpleadoModel{
     correoUsuario?: string;
     numFamiliares?: number;
     fechaNacimiento?: string;
-    // ubicacionGeografica?: UbicacionGeografica;
     idCantonPertenece?: number;
     user?: string;
     password?:string;
     fechaRegistro?: string;
-    // pivot?: Pivot;
+    administrador?:boolean;
   }

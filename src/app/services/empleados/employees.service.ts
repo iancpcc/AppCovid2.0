@@ -16,12 +16,12 @@ export class EmployeesService {
 
   constructor(private http:HttpClient) { }
   private url=`${url_services}`
+
+  //Servicios Empleados
   obtenerEmpleado(){
     return this.http.get<RespuestaEmpleados>(`${this.url}/listaUsuariosByIdPerfil/4`);
   }
-  obtenerAdministradores(){
-    return this.http.get<RespuestaEmpleados>(`${this.url}/listaUsuariosByIdPerfil/3`);
-  }
+  
   obtenerEmpleadoxID(idEmpleado: number){
     return this.http.get<Empleado>(`${this.url}/usuario/${idEmpleado}`).pipe(
       map(res=>res["data"]
@@ -30,7 +30,6 @@ export class EmployeesService {
   }
 
 actualizarEmpleado(empleado:EmpleadoModel,idEmpleado:number){
-  console.log('empleado a actualizar', empleado);
   
   return this.http.put(`${this.url}/actualizarUsuario/${idEmpleado}`,empleado);
 }
@@ -39,7 +38,25 @@ actualizarEmpleado(empleado:EmpleadoModel,idEmpleado:number){
   }
   eliminarEmpleado(id:number){
     return this.http.delete<void>(`${this.url}/eliminarUsuario/${id}`)
-    .pipe();
     
    }
+   //Servicios Administradores
+   obtenerAdministradores(){
+    return this.http.get<RespuestaEmpleados>(`${this.url}/listaUsuariosByIdPerfil/3`);
+
+  }
+  actualizarAdministradores(empleado:EmpleadoModel,idEmpleado:number){
+    return this.http.put(`${this.url}/actualizarUsuario/${idEmpleado}`,empleado);
+  }
+    registrarAdministradores(empleado:EmpleadoModel){
+     return this.http.post(`${this.url}/agregarUsuarioByIdPerfil/3`,empleado);
+    }
+    eliminarAdministradores(id:number){
+      return this.http.delete<void>(`${this.url}/eliminarUsuario/${id}`)
+      
+     }
+
+
+
+
 }

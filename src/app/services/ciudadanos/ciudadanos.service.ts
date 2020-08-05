@@ -40,4 +40,18 @@ export class CiudadanosService {
     obtenerTotales(){
       return this.http.get(`${this.url}/totalesUsuariosByIdPerfil/2`)
     }
+
+
+    obtenerMeses(){
+      return this.http.get(`${this.url}/totalesRegistrosUltimos6Meses`).pipe(map
+        (res=>res['TotalesCiudadanos']))
+    }
+
+    
+    obtenerTotalesPorMes(){
+      return this.http.get(`${this.url}/totalesRegistrosUltimos6Meses`).pipe(map
+        (res=>res['TotalesCiudadanos']))
+    }
+
+    
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/service.index';
+import { LoginComponent } from 'src/app/login/login.component';
 declare function init_plugins() 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,14 @@ declare function init_plugins()
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router:Router,private login:LoginService) { 
+  constructor(private router:Router,
+    private login:LoginService,
+    // private roles:LoginComponent
+    ) { 
   }
 
   ngOnInit(): void {
+    // console.log('roles',this.roles.roles);
   }
 
   salir(){
