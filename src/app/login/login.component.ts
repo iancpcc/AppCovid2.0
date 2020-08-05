@@ -44,10 +44,16 @@ roles=3;
       let cantidadRoles=res.length;
       console.log('roles 1',res);
       
-        if(cantidadRoles>=1){
+        if(cantidadRoles==1){
+        this.login.guardarRol('MainAdmin')
         this.router.navigateByUrl('/dashboard');
         Swal.close();
         }
+        else if(cantidadRoles>1){
+          this.login.guardarRol('SecondaryAdmin')
+          this.router.navigateByUrl('/dashboard');
+          Swal.close();
+          }
         else{
           Swal.fire({
             allowOutsideClick:false,

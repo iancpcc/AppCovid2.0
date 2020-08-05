@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CiudadanosService } from '../../services/service.index';
 
 @Component({
   selector: 'app-reports',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private totales:CiudadanosService) { }
+cargando=true;
+totalesMeses=[]
   ngOnInit(): void {
+    this.totales.obtenerTotalesPorMes()
+    .subscribe(resp=>{
+      this.totalesMeses=resp;
+      this.cargando=false;
+    });
+
   }
 
 }

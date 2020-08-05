@@ -13,6 +13,7 @@ import { EditemployeeComponent } from './employees/editemployee/editemployee.com
 import { AddemployeeComponent } from './employees/addemployee/addemployee.component';
 import { EditadminComponent } from './admins/editadmin/editadmin.component';
 import { AddadminComponent } from './admins/addadmin/addadmin.component';
+import { RolesGuard } from '../guards/roles.guard';
 
 
 
@@ -23,9 +24,9 @@ const pagesRoutes: Routes = [
   { path: 'empleados', component: EmployeesComponent },
   { path: 'empleado/:id', component: EditemployeeComponent },
   { path: 'empleado', component: AddemployeeComponent },
-  { path: 'administradores', component: AdminsComponent },
-  { path: 'administrador/:id', component: EditadminComponent },
-  { path: 'administrador', component: AddadminComponent },
+  { path: 'administradores', component: AdminsComponent,canActivate:[RolesGuard] },
+  { path: 'administrador/:id', component: EditadminComponent,canActivate:[RolesGuard] },
+  { path: 'administrador', component: AddadminComponent,canActivate:[RolesGuard] },
   { path: 'reportes', component: ReportsComponent },
   { path: 'mapbox', component: MapboxComponent },
   { path: 'heatmap', component: HotmapComponent },

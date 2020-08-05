@@ -51,6 +51,7 @@ export class LoginService {
   logout(){
    localStorage.removeItem('token');
    localStorage.removeItem('expira');
+   localStorage.removeItem('roldeUsuario');
  }
  
   async getUserData(){
@@ -108,9 +109,31 @@ export class LoginService {
    return  true;
    }
    localStorage.removeItem('expira')
+   localStorage.removeItem('token')
+   localStorage.removeItem('roldeUsuario')
    return false;
  
- 
- 
  }
+
+ guardarRol(rol:string){
+  localStorage.setItem('roldeUsuario',rol);
+}
+
+obtenerRol(){
+ const rol= localStorage.getItem('roldeUsuario');
+ if(rol){
+  return rol;
+ }
+  return '';
+}
+
+existeRol(){
+ const rol= localStorage.getItem('roldeUsuario');
+
+  if(isNull(rol)){
+    return false;
+}
+return true;
+}
+
 }

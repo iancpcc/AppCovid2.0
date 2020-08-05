@@ -39,7 +39,7 @@ export class EditadminComponent implements OnInit {
   }
 
   actualizar(event:EmpleadoModel){
-               if(!event.administrador){
+              
                 Swal.fire({
                   allowOutsideClick:false,
                   title: 'Actualizando',
@@ -60,9 +60,10 @@ export class EditadminComponent implements OnInit {
                   Swal.close();
                   this.empleadosMethods.messagePopup('error');
                 },error=>{
-                  this.empleadosMethods.messagePopup('custom',error['error']);
+                  const sms=error['error'].error
+                  this.empleadosMethods.messagePopup('custom',sms);
                 });
               }
-          }  
+          
 
 }

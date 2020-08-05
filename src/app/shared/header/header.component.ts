@@ -15,9 +15,9 @@ export class HeaderComponent implements OnInit {
     // private roles:LoginComponent
     ) { 
   }
-
+roles=''
   ngOnInit(): void {
-    // console.log('roles',this.roles.roles);
+  this.roles=this.login.obtenerRol();
   }
 
   salir(){

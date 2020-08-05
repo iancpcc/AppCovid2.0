@@ -15,6 +15,9 @@ import { BarchartComponent } from './barchart/barchart.component';
 import { DoughnutchartComponent } from './doughnutchart/doughnutchart.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import { TableComponent } from './table/table.component';
+
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     HotmapComponent,
@@ -44,9 +47,9 @@ import { TableComponent } from './table/table.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    ChartsModule
-    
- 
+    ChartsModule,
+    NgxPaginationModule
   ],
+  providers:[ ]
 })
 export class ComponentesModule { }

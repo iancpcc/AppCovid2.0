@@ -34,10 +34,10 @@
             <li class="sidebar-item" routerLinkActive="active" >
                 <a href="#users" data-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="users"></i> <span class="align-middle">Usuarios</span>
-    </a>
-                <ul id="users" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                </a>
+                <ul id="users" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar" >
                     <li class="sidebar-item"><a class="sidebar-link" routerLink='/empleados'>Empleados</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" routerLink='/administradores'>Administradores</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" routerLink='/administradores' *ngIf="rol=='MainAdmin'">Administradores</a></li>
                    
                 </ul>
             </li>

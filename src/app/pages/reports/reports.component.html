@@ -25,7 +25,8 @@
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                       <app-barchart></app-barchart>
+                        <app-spinner *ngIf="cargando" ></app-spinner>
+                       <app-barchart [totalesPorMeses]="totalesMeses" *ngIf="!cargando"></app-barchart>
                     </div>
                 </div>
             </div>
