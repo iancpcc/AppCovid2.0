@@ -13,8 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router:Router,
     private login:LoginService,
     // private roles:LoginComponent
-    ) { 
-  }
+    ) {}
 roles=''
   ngOnInit(): void {
   this.roles=this.login.obtenerRol();

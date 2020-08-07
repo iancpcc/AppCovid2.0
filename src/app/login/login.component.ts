@@ -19,12 +19,12 @@ roles=3;
     private login:LoginService
     
    ) {
+    init_plugins() ;
      
     
     }
 
    ngOnInit(): void {
-     init_plugins() ;
     this.usuario=new UsuarioModel;
     }
   
