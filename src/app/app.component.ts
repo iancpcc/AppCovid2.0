@@ -1,5 +1,6 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
+declare function init_plugins()
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,14 @@ import { Component, OnInit  } from '@angular/core';
 })
 
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit,AfterViewInit {
   title = 'AppVinculacion';
   
-  
   constructor() { }
-
-  
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit(){
+
   }
 }

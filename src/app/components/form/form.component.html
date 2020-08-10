@@ -43,6 +43,8 @@
                     <label for="Lced">Cedula</label>
                     <input type="text" 
                     [(ngModel)]="nuevoEmpleado.cedulaUsuario"
+                    minlength="10"  
+                    maxlength="10" 
                     name="cedulaUsuario"
                     required
                     class="form-control" 
@@ -50,7 +52,7 @@
                     
                     <span class="text-danger" 
                     *ngIf="empleado.submitted && 
-                    empleado.controls['cedulaUsuario'].errors">Ingrese su Cedula</span>
+                    empleado.controls['cedulaUsuario'].errors">Ingrese su Cedula(10 digitos)</span>
                         <!-- FinCedula -->
                     <!-- Email -->
                     </div>
@@ -74,7 +76,9 @@
                     <!-- Telefono -->
                     <div class="form-group col-md-6">
                         <label for="Lpass">Telefono</label>
-                        <input type="text" 
+                        <input type="text"
+                        minlength="7"  
+                        maxlength="10"  
                         [(ngModel)]="nuevoEmpleado.telefonoUsuario"
                         name="telefonoUsuario"
                         class="form-control" 
@@ -91,6 +95,7 @@
                 <div class="form-group col-md-6">
                     <label for="inputAddress">Direccion</label>
                     <input type="text" 
+                    minlength="5" 
                     [(ngModel)]="nuevoEmpleado.direccionUsuario"
                     name="direccionUsuario"
                     class="form-control" 
@@ -103,22 +108,28 @@
                 </div>
               
            <!-- Fecha -->
-                    <div class=" col-md-12" style="font-size: 12px">
-                        <mat-form-field appearance="outline" style="width: 20rem" >
-                        <mat-label style="font-weight: 500;">Fecha de Nacimiento</mat-label>
-                        <input matInput [matDatepicker]="dp3" 
-                        [(ngModel)]="nuevoEmpleado.fechaNacimiento "
-                        name="fechaNacimiento" 
-                        id="txtfecha" style="font-size: 12px;"
-                        required
-                        >
-                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-                      </mat-form-field>
-                        
+                <div class="form-group col-md-3 " >
+                    <label for="inputAddress">Fecha</label> 
+                    <div class="input-group">
+                    <input class="form-control" 
+                    minlength="10" 
+                    maxlength="10" 
+                    required 
+                    type="text" placeholder="yyyy-mm-dd"
+                   [(ngModel)]="date"  name="date"  ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar-day"></i></button>
                     </div>
-                   
+                    
                 </div>
+                <span class="text-danger" 
+                *ngIf="empleado.submitted && 
+                empleado.controls['date'].errors">Ingrese la fecha</span>
+
+               
+                </div>
+              
+            </div>
                 <!-- <div class="row" *ngIf="action=='insert'" > -->
                 <div class="row"  >
                 <!--  Usuarios -->
@@ -128,6 +139,8 @@
                         <label for="lUser">Usuario</label>
                         <input type="text"
                         [(ngModel)]="nuevoEmpleado.user"
+                        minlength="4" 
+                        maxlength="10" 
                         name="user" 
                         placeholder="Usuario"
                         class="form-control" 
@@ -136,7 +149,7 @@
                         
                         <span class="text-danger" 
                         *ngIf="empleado.submitted && 
-                        empleado.controls['user'].errors">Ingrese el usuario </span>
+                        empleado.controls['user'].errors">Ingrese el usuario (Minimo 4 y maximo 10 Caracteres) </span>
                    
                 </div>
                     <div class="col-md-4" *ngIf="action=='update'">
@@ -151,7 +164,7 @@
             <div class="row" *ngIf="action=='update'">
                 <div class="form-group col-md-4">
                 <input #check type="checkbox" name="cbox2" (click)="activatePassInput()" >
-                <label for="cbox2">Cambiar Contraseña</label>
+                <label for="cbox2" class="pl-1">Cambiar Contraseña</label>
             </div>
             </div>
 
@@ -168,7 +181,7 @@
                        required
                         id="ippass">
                         <span class="text-danger" 
-                        *ngIf="empleado.submitted && checked && 
+                        *ngIf="empleado.submitted && !checked && 
                         empleado.controls['password'].errors">Ingrese la contraseña (Minimo 8 caracteres)  </span>
                     </div>
                     <div class="form-group col-md-4">
@@ -184,7 +197,7 @@
                         class="form-control" 
                         id="idconfirm">
                         <span class="text-danger" 
-                        *ngIf="empleado.submitted && checked &&
+                        *ngIf="empleado.submitted && !checked &&
                         empleado.controls['confirm'].errors">Ingrese la contraseña (Minino 8 caracteres) </span>
                
                         <span class="text-danger" *ngIf="!coinciden" >Las contraseñas no coinciden</span>

@@ -63,8 +63,9 @@
 
               
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block"  data-toggle="dropdown">
-                    <img src="../../../assets/img/admin.png" *ngIf="roles=='MainAdmin'" class="avatar img-fluid rounded mr-1" />  <span *ngIf="roles=='MainAdmin'" class="text-dark">Administrador</span>
-                    <img src="../../../assets/img/avatar.png" *ngIf="roles=='SecondaryAdmin'" class="avatar img-fluid rounded mr-1" />  <span *ngIf="roles=='SecondaryAdmin'"  class="text-dark">Empleado</span>
+                    <img src="../../../assets/img/SecondaryAdmin.png" *ngIf="roles=='MainAdmin'" class="avatar img-fluid rounded mr-1" />  <span     *ngIf="roles=='MainAdmin'" class="text-dark">{{usuario}}</span>
+                    <img src="../../../assets/img/PrimaryAdmin.png"   *ngIf="roles=='SecondaryAdmin'"  class="avatar img-fluid rounded mr-1" /><span *ngIf="roles=='SecondaryAdmin'" class="text-dark">{{usuario}}</span>
+                    <img src="../../../assets/img/empleado.png"       *ngIf="roles=='RoleEmployee'" class="avatar img-fluid rounded mr-1" /> <span   *ngIf="roles=='RoleEmployee'"  class="text-dark">{{usuario}}</span>
   </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" routerLink="/profile"><i class="align-middle mr-1" data-feather="user"></i> Perfil</a>

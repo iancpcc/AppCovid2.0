@@ -10,10 +10,12 @@ import { PagesModule } from './pages/pages.module';
 import { FormsModule } from '@angular/forms';
 //Servicios
 import { ServiceModule } from './services/service.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
 import { LoginGuard } from './guards/login.guard';
 import { EmployeesComponent } from './pages/employees/employee.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,7 @@ import { EmployeesComponent } from './pages/employees/employee.component';
     PagesModule,
     FormsModule,
     ServiceModule,
-    NoopAnimationsModule
+    // NoopAnimationsModule,
     
   ],
   providers:    [ DatePipe,LoginGuard,EmployeesComponent],

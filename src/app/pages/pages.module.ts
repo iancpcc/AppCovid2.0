@@ -18,7 +18,8 @@ import { AddemployeeComponent } from './employees/addemployee/addemployee.compon
 import { EditemployeeComponent } from './employees/editemployee/editemployee.component';
 import { AddadminComponent } from './admins/addadmin/addadmin.component';
 import { EditadminComponent } from './admins/editadmin/editadmin.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -33,18 +34,20 @@ import { EditadminComponent } from './admins/editadmin/editadmin.component';
     AddemployeeComponent,
     EditemployeeComponent,
     AddadminComponent,
-    EditadminComponent
+    EditadminComponent,
+    SettingsComponent
     
   ],
     exports: [
-      DashboardComponent
+     
   ],
   imports: [
+    SharedModule,
     CommonModule,
     PAGES_ROUTES,
-    SharedModule,
     FormsModule,
-    ComponentesModule
+    ComponentesModule,
+    NgbModule
 
   ]
 })

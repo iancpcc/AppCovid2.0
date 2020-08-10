@@ -5,9 +5,6 @@ import { MapboxComponent } from './mapbox/mapbox.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { SplineComponent } from './spline/spline.component';
 //Graficos
 import { ChartsModule } from 'ng2-charts';
@@ -17,6 +14,9 @@ import { PiechartComponent } from './piechart/piechart.component';
 import { TableComponent } from './table/table.component';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+
+//Datepicker
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,11 +44,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
   imports: [
     CommonModule,
     FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
     ChartsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgbModule
   ],
   providers:[ ]
 })

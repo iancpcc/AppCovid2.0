@@ -1,0 +1,192 @@
+<app-spinner *ngIf="cargando"></app-spinner>
+
+<div class="container-fluid p-0" *ngIf="!cargando">
+
+    <h1 class="h3 mb-3">Perfil</h1>
+
+    <div class="row">
+        <div class="col-md-3 col-xl-2">
+
+            <div class="card">
+                <div class="card-header pb-0 mb-0">
+                    <h5 class="card-title mb-0">Configuracion</h5>
+                </div>
+                <hr>
+
+                <div class="list-group list-group-flush" role="tablist">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">
+                            Cuenta
+                    </a>
+                    <a class="list-group-item list-group-item-action" *ngIf="rol!='MainAdmin'" data-toggle="list" href="#password" role="tab">
+                            Contraseña
+                            </a>
+                        </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 col-xl-10" >
+            <div class="tab-content">
+        <div class="tab-pane fade show active" id="account" role="tabpanel">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Información</h5>
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="editUserAdmin(root)"
+                    #root="ngForm">
+                        <div class="row">
+                            <div class="col-md-8">
+                              
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputFirstName">Nombres</label>
+                                        <input type="text" class="form-control" 
+                                        [(ngModel)]="admin.nombresUsuario"
+                                        required
+                                        name="inputFirstName" placeholder="Nombres">
+                                        <span class="text-danger" 
+                                        *ngIf="root.submitted && 
+                                        root.controls['inputFirstName'].errors">Ingrese su Nombre</span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputLastName">Apellidos</label>
+                                        <input type="text" 
+                                        required
+                                        class="form-control" 
+                                        [(ngModel)]="admin.apellidosUsuario"
+                                        name="inputLastName" placeholder="Apellidos">
+                                        <span class="text-danger" 
+                                         *ngIf="root.submitted && 
+                                         root.controls['inputLastName'].errors">Ingrese su Apellido</span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputLastName">Usuario</label>
+                                        <input *ngIf="rol!='MainAdmin'"
+                                        type="text" 
+                                        required
+                                        class="form-control" 
+                                        [(ngModel)]="admin.user"
+                                        name="inputUser" placeholder="Usuario">
+                                        <input *ngIf="rol=='MainAdmin'" type="text" 
+                                        required
+                                        disabled
+                                        class="form-control" 
+                                        [(ngModel)]="admin.user"
+                                        name="inputUser" placeholder="Usuario">
+                                        <span class="text-danger" 
+                                        *ngIf="root.submitted && 
+                                        root.controls['inputUser'].errors">Ingrese el usuario </span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputLastName">Cédula</label>
+                                        <input type="text" 
+                                        required
+                                        class="form-control" 
+                                        [(ngModel)]="admin.cedulaUsuario"
+                                        name="inputCedula" placeholder="Cedula">
+                                        <span class="text-danger" 
+                                        *ngIf="root.submitted && 
+                                        root.controls['inputCedula'].errors">Ingrese su Cedula</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail4">Email</label>
+                                    <input type="email" 
+                                    required
+                                    class="form-control" 
+                                    [(ngModel)]="admin.correoUsuario"
+                                    name="inputEmail4" placeholder="Email">
+                                    <span class="text-danger" 
+                                    *ngIf="root.submitted && 
+                                    root.controls['inputEmail4'].errors">Ingrese su Correo</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Dirección</label>
+                                    <input type="text" 
+                                    required
+                                    class="form-control" 
+                                    [(ngModel)]="admin.direccionUsuario"
+                                    name="inputAddress" placeholder="Ej: Av. Bolivariana">
+                                    <span class="text-danger" 
+                                    *ngIf="root.submitted && 
+                                    root.controls['inputAddress'].errors">Ingrese su Dirección</span>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <label for="inputAddress">Teléfono</label>
+                                    <input type="text" 
+                                    required
+                                    class="form-control" 
+                                    [(ngModel)]="admin.telefonoUsuario"
+                                    name="inputPhone" placeholder="xxxxxxxxxxx">
+                                    <span class="text-danger" 
+                                     *ngIf="root.submitted && 
+                                     root.controls['inputPhone'].errors">Ingrese su Teléfono</span>
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <img alt="Chris Wood" *ngIf="rol=='MainAdmin'"   src="../../../assets/img/PrimaryAdmin.png"       class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                    <img alt="Chris Wood" *ngIf="rol=='SecondaryAdmin'" src="../../../assets/img/SecondaryAdmin.png" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                    <img alt="Chris Wood" *ngIf="rol=='RoleEmployee'" src="../../../assets/img/empleado.png" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                  
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="password" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Contraseña</h5>
+
+                    <form (ngSubmit)="editPassAdmin(pass)"
+                    #pass="ngForm" >
+                        <div class="form-group">
+                            <label for="inputPasswordNew">Nueva Contraseña</label>
+                            <input type="password" 
+                            required
+                            (keyup)=" evaluarPass(pass.controls['confirm'].value)"
+                            class="form-control"
+                            [(ngModel)]="adminpass.password" 
+                            name="inputPasswordNew">
+                            <span class="text-danger" 
+                        *ngIf="pass.submitted && 
+                        pass.controls['inputPasswordNew'].errors">Ingrese la contraseña (Minimo 8 caracteres)  </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPasswordNew2">Confirmar Contraseña</label>
+                            <input type="password"
+                            required 
+                            class="form-control" 
+                            [(ngModel)]='confirmText'
+                            #confirm
+                            (keyup)="evaluarPass(confirm.value)"
+                            name="confirm">
+                            <span class="text-danger" 
+                        *ngIf="pass.submitted && 
+                        pass.controls['confirm'].errors">Ingrese la contraseña (Minimo 8 caracteres)  </span>
+                        <span class="text-danger" *ngIf="!coinciden" >Las contraseñas no coinciden</span>    
+                    </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    </div>
+
+</div>
+

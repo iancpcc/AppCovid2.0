@@ -14,6 +14,7 @@ import { AddemployeeComponent } from './employees/addemployee/addemployee.compon
 import { EditadminComponent } from './admins/editadmin/editadmin.component';
 import { AddadminComponent } from './admins/addadmin/addadmin.component';
 import { RolesGuard } from '../guards/roles.guard';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -31,6 +32,7 @@ const pagesRoutes: Routes = [
   { path: 'mapbox', component: MapboxComponent },
   { path: 'heatmap', component: HotmapComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'settings', component: SettingsComponent },
   { path: '',redirectTo:'/dashboard',pathMatch:'full' },
 
   ]

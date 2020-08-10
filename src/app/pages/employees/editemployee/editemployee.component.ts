@@ -56,7 +56,7 @@ export class EditemployeeComponent implements OnInit {
       {
       if(res!=null){
         Swal.close();
-      this.empleadosMethods.messagePopup("success");
+      this.empleadosMethods.messagePopup("successedit");
        this.router.navigate(['/empleados']);
        return;
      }

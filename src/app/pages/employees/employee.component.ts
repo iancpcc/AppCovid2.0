@@ -115,8 +115,6 @@ deleteEmployee(id:number){
 })
    
 }
-  
-
 public messagePopup(type:string,message?:string){
   switch (type) {
   case 'success':
@@ -128,6 +126,16 @@ public messagePopup(type:string,message?:string){
     timer: 1500
   });
   break;
+  case 'successedit':
+  Swal.fire({
+    position: 'top',
+    icon: 'success',
+    title: 'Registro actualizado con exito',
+    showConfirmButton: false,
+    timer: 1500
+  });
+  break;
+
   case 'error':
     Swal.fire({
       title: 'Registro Fallido',

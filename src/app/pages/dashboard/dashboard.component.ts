@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CiudadanosService } from '../../services/ciudadanos/ciudadanos.service';
-declare function init_widgets();
-declare function init_plugins();
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,7 +14,6 @@ export class DashboardComponent implements OnInit {
   constructor(private totales:CiudadanosService) { }
 
   ngOnInit(): void {
-    init_widgets();
     this.totales.obtenerTotales()
     .subscribe((res:any)=>{
       this.totalUsuario=res.TotalRegistros

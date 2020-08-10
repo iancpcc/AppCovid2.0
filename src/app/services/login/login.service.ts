@@ -36,7 +36,6 @@ export class LoginService {
            
            if(rol[0]=='Administrador' || rol[1]=='Administrador') 
            {
-            console.log('rol',rol);
             return rol;
           }
           this.logout();

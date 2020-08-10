@@ -1,6 +1,4 @@
 /*! For license information please see app.js.LICENSE.txt */
-
-function init_plugins() {
    
     !function(e) {
         var t = {};
@@ -37057,7 +37055,8 @@ function init_plugins() {
         n(311)
     }
     ]);
+
     	
-    
-}
+
+
 

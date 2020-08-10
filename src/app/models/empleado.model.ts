@@ -12,5 +12,5 @@ export class EmpleadoModel{
     user?: string;
     password?:string;
     fechaRegistro?: string;
-    administrador?:boolean;
+    administrador?:any;
   }

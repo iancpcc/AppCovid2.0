@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { EmpleadoModel } from '../../models/empleado.model';
 import { DatePipe } from '@angular/common';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-form',
@@ -26,6 +28,7 @@ coinciden:boolean=true;
 confirmText=''
 tipoUsuario=''
 checked=false
+// fechanuevo:any
 constructor( private router:Router,
     private pipe:DatePipe) { }
 
@@ -35,8 +38,16 @@ constructor( private router:Router,
       this.checked=true;
       this.nuevoEmpleado=new EmpleadoModel();
     }
+
+    var fechanuevo = new Date(this.nuevoEmpleado.fechaNacimiento); 
+    var day = fechanuevo.getDate();
+    var monthIndex = fechanuevo.getMonth();
+    var year = fechanuevo.getFullYear();
+    this.date={ year:year,month:monthIndex+1,day:day+1 };
+    // console.log('esto llega:',this.nuevoEmpleado);
+    
   }
-  
+   date: NgbDateStruct ;
   cancelar(){
     if(this.origen=='ep')
    {
@@ -66,7 +77,6 @@ evaluarPass(pass:string){
 
 }
   validarForm(form:NgForm){
-    console.log('form',form);
     
     if(form.invalid){
       return false
@@ -81,8 +91,8 @@ evaluarPass(pass:string){
         return true;
       }
       return false;
-
     }
+    
 
   public fecha(fecha:string,format:string){
       var date = new Date(fecha); // had to remove the colon (:) after the T in order to make it work
@@ -102,10 +112,20 @@ evaluarPass(pass:string){
   }
   
     public postEmpleado(form:NgForm){
-      console.log('checked',this.checked);
+      // console.log('checked',this.checked);
      
       if (this.validarForm(form) )
       {
+        var newfecha=this.date.year+'-'+this.date.month+'-'+this.date.day;
+        this.nuevoEmpleado.fechaNacimiento=newfecha;
+        if(this.nuevoEmpleado.administrador){
+          this.nuevoEmpleado.administrador=1;
+        }
+        else{
+          this.nuevoEmpleado.administrador=0;
+        }
+        console.log('esto se emmite:',this.nuevoEmpleado);
+        
         if(!this.checked){
           this.salidaEmpleado.emit(this.nuevoEmpleado);
         }

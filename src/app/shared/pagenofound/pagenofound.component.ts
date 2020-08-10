@@ -11,7 +11,7 @@ export class PagenofoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    init_plugins();
+    // init_plugins();
   }
 
 }

@@ -44,8 +44,6 @@ export class EditadminComponent implements OnInit {
                   allowOutsideClick:false,
                   title: 'Actualizando',
                   text: 'Espere Porfavor..',
-                  icon: 'info',
-                  // confirmButtonText: 'Cool'
                 })
       
                 Swal.showLoading();
@@ -53,7 +51,7 @@ export class EditadminComponent implements OnInit {
                 {
                   if(res!=null){
                     Swal.close();
-                    this.empleadosMethods.messagePopup("success");
+                    this.empleadosMethods.messagePopup("successedit");
                     this.router.navigate(['/administradores']);
                     return;
                   }

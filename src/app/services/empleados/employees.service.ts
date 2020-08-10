@@ -23,7 +23,7 @@ export class EmployeesService {
   }
   
   obtenerEmpleadoxID(idEmpleado: number){
-    return this.http.get<Empleado>(`${this.url}/usuario/${idEmpleado}`).pipe(
+    return this.http.get(`${this.url}/usuario/${idEmpleado}`).pipe(
       map(res=>res["data"]
       )
     );
