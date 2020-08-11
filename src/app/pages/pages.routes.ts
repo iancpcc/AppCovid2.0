@@ -7,7 +7,6 @@ import { HotmapComponent } from '../components/hotmap/hotmap.component';
 import { LoginGuard } from '../guards/login.guard';
 import { MapboxComponent } from '../components/mapbox/mapbox.component';
 import { ProfileComponent } from './profile/profile.component';
-import { MaintenanceComponent } from './employees/maintenance/maintenance.component';
 import { AdminsComponent } from './admins/admins.component';
 import { EditemployeeComponent } from './employees/editemployee/editemployee.component';
 import { AddemployeeComponent } from './employees/addemployee/addemployee.component';

@@ -52,7 +52,6 @@ this.coordenadas.obtenerCoordenadasCiudadanos()
     title: 'Aviso',
     text: 'No se pudieron obtener datos del servidor',
     icon: 'info',
-    // confirmButtonText: 'Cool'
   });
 })
 

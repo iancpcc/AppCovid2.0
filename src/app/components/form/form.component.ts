@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { EmpleadoModel } from '../../models/empleado.model';
 import { DatePipe } from '@angular/common';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { EmployeesService } from '../../services/empleados/employees.service';
 
 
 @Component({
@@ -28,9 +29,11 @@ coinciden:boolean=true;
 confirmText=''
 tipoUsuario=''
 checked=false
-// fechanuevo:any
-constructor( private router:Router,
-    private pipe:DatePipe) { }
+date: NgbDateStruct ;
+cedulaValida:boolean;
+correoValido:boolean;
+usuarioValido:boolean;
+constructor( private router:Router,private empleadoService:EmployeesService) { }
 
   ngOnInit(): void {
     console.log('actioon',this.action);
@@ -44,10 +47,96 @@ constructor( private router:Router,
     var monthIndex = fechanuevo.getMonth();
     var year = fechanuevo.getFullYear();
     this.date={ year:year,month:monthIndex+1,day:day+1 };
-    // console.log('esto llega:',this.nuevoEmpleado);
     
   }
-   date: NgbDateStruct ;
+
+  validarCedula(cedula:string){
+     
+    var cedula =  cedula.trim();
+          var digitoVerificador =cedula.charAt(9);
+          var cedulaArray =[cedula.charAt(0),cedula.charAt(1),cedula.charAt(2),cedula.charAt(3),cedula.charAt(4),cedula.charAt(5),cedula.charAt(6),cedula.charAt(7),cedula.charAt(8)];
+          var coeficientes=[2,1,2,1,2,1,2,1,2];
+
+          var suma=0;
+          for (var i =0;i<=8;i++){
+          var multi = coeficientes[i]* parseInt( cedulaArray[i]);
+          if(multi >=10){
+          multi=multi-9;
+                        }
+          suma=suma+multi;
+          }
+
+          var superior =suma - (suma%10) + 10;
+          var digitoResultado=superior-suma;
+
+          if(digitoResultado.toString() == digitoVerificador){
+            return true;
+          }
+          else{
+        return false;
+          }
+  }
+
+  existeCedula(cedula:string){
+    if(cedula.length==10){
+      this.empleadoService.cedulaExistente(cedula)
+      .subscribe(resp=>{
+        console.log('object',resp);
+        
+        if(resp){
+        this.cedulaValida=true;
+        }
+        else{
+        this.cedulaValida=false;
+
+        }
+        
+      })
+      
+    }
+    
+  }
+
+  existeCorreo(correo:string){
+    if(correo.length>=5){
+      this.empleadoService.correoExistente(correo)
+      .subscribe(resp=>{
+        console.log('object',resp);
+       if(resp){
+        this.correoValido=true;
+        }
+        else{
+        this.correoValido=false;
+
+        }
+        
+      })
+      
+    }
+    
+  }
+
+  existeUsuario(username:string){
+    if(username.length>=4){
+      this.empleadoService.userNameExistente(username)
+      .subscribe(resp=>{
+        console.log('object',resp);
+        
+        if(resp){
+        this.usuarioValido=true;
+        }
+        else{
+        this.usuarioValido=false;
+
+        }
+        
+      })
+      
+    }
+    
+  }
+
+
   cancelar(){
     if(this.origen=='ep')
    {
@@ -112,10 +201,13 @@ evaluarPass(pass:string){
   }
   
     public postEmpleado(form:NgForm){
-      // console.log('checked',this.checked);
-     
-      if (this.validarForm(form) )
+      console.log('correo',this.correoValido);
+      console.log('user',this.usuarioValido);
+      
+      if (this.validarForm(form) && !this.correoValido  && !this.usuarioValido)
       {
+        if(this.validarCedula(this.nuevoEmpleado.cedulaUsuario)){
+
         var newfecha=this.date.year+'-'+this.date.month+'-'+this.date.day;
         this.nuevoEmpleado.fechaNacimiento=newfecha;
         if(this.nuevoEmpleado.administrador){
@@ -134,10 +226,15 @@ evaluarPass(pass:string){
             this.salidaEmpleado.emit(this.nuevoEmpleado);
           }
         }
+      }
+      else{
+        this.messagePopup("custom","Cedula Invalida")
+      }
+
     
           }
     else{
-      this.messagePopup("custom","Campos vacios ")
+      this.messagePopup("custom","Campos vacios o ya exitentes  ")
     }
 
   }

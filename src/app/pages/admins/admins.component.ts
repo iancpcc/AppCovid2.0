@@ -23,12 +23,19 @@ idPerson=0;
 
 cargarEmpleados(){
   this.empleados.obtenerAdministradores()
-   .subscribe(ep=>{
-     
+     .then(ep=>{
      this.persons.push(...ep.ListaUsuariosByIdPerfil);
-     
      this.cargando=false;
      this.buscando=false;
+   },error=>{
+    Swal.fire({
+      title: 'Error',
+      text: 'No se pudo obtener datos del Servidor',
+      icon: 'error',
+      timer: 1000
+    });
+    this.persons=[];
+
    })
 
   }

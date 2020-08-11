@@ -64,9 +64,7 @@ export class LoginService {
       
       let user:EmpleadoModel
       const data=  await this.http.get(
-        `${this.url}/user/info`
-        ,{headers:header}
-        ).toPromise();
+        `${this.url}/user/info`,{headers:header}).toPromise();
       
         user=data['data'];
         return  user;

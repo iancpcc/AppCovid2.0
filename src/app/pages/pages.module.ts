@@ -10,7 +10,6 @@ import { MapsComponent } from './maps/maps.component';
 //Graficas y mapas
 import { ReportsComponent } from './reports/reports.component';
 import { ComponentesModule } from '../components/componentes.module';
-import { MaintenanceComponent } from './employees/maintenance/maintenance.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminsComponent } from './admins/admins.component';
 import { EmployeesComponent } from './employees/employee.component';
@@ -27,7 +26,6 @@ import { SettingsComponent } from './settings/settings.component';
     DashboardComponent, 
     MapsComponent,
     ReportsComponent,
-    MaintenanceComponent,
     ProfileComponent,
     AdminsComponent,
     EmployeesComponent,
