@@ -64,18 +64,13 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputLastName">Usuario</label>
-                                        <input *ngIf="rol!='MainAdmin'"
+                                        <input 
                                         type="text" 
                                         required
                                         class="form-control" 
                                         [(ngModel)]="admin.user"
                                         name="inputUser" placeholder="Usuario">
-                                        <input *ngIf="rol=='MainAdmin'" type="text" 
-                                        required
-                                        disabled
-                                        class="form-control" 
-                                        [(ngModel)]="admin.user"
-                                        name="inputUser" placeholder="Usuario">
+                                        
                                         <span class="text-danger" 
                                         *ngIf="root.submitted && 
                                         root.controls['inputUser'].errors">Ingrese el usuario </span>

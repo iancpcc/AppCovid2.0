@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label, MultiDataSet } from 'ng2-charts';
+import { Label, MultiDataSet, Color } from 'ng2-charts';
 import { CiudadanosService } from '../../services/service.index';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 @Component({
@@ -10,69 +10,52 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class BarchartComponent implements OnInit  {
   
-  public doughnutChartLabels: Label[]
-  public doughnutChartData: MultiDataSet 
-  public doughnutChartType: ChartType
-
-  chartData: { data: number[]; label: string; }[];
-  public pieChartLabels: Label[];
-  public pieChartData: number[];
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  public pieChartPlugins = [pluginDataLabels];
-  public pieChartColors = [];
+ 
 constructor(private totales: CiudadanosService) { }
 
-dynamicColors = function() {
-  var r = Math.floor(Math.random() * 255);
-  var g = Math.floor(Math.random() * 255);
-  var b = Math.floor(Math.random() * 255);
-  return "rgb(" + r + "," + g + "," + b + ")";
-};
-@Input() totalesPorMeses:number[]
-
-public barChartOptions: ChartOptions = {
-responsive: true,
-};
-meses:string[]=[]
-total:number[]=[]
-colores:string[]=[]
-ngOnInit(){
+@Input() totalesPorMeses:any
  
-    let i=0;
-    this.totalesPorMeses.forEach(element => {
-      
-      this.meses[i]=element['mes']
-      this.total[i]=element['total']
-      this.colores[i]=this.dynamicColors();
-      i++;
-    });
-
-   
-    this.pieChartLabels =this.meses ;
-    this.pieChartData = this.total;
-    this.pieChartColors = [{
-        backgroundColor: this.colores
-      }]
-
-
-  
-}
-public pieChartOptions: ChartOptions = {
+public barChartOptions: ChartOptions = {
   responsive: true,
-  legend: {
-    position: 'top',
-  },
-  plugins: {
-    datalabels: {
-      formatter: (value, ctx) => {
-        const label = ctx.chart.data.labels[ctx.dataIndex];
-        return label;
-      },
-    },
-  }
+  scales: { xAxes: [{}]},
 };
 
+public barChartType: ChartType = 'bar';
+public barChartLegend = true;
+public barChartPlugins = [];
+Sintoma:string[]=[]
+totalcantidad:number[]=[]
+
+public barChartLabelsSintomas: Label[] ;
+public barChartData: ChartDataSets[] ;
+
+ngOnInit(){
+  console.log('meses',this.totalesPorMeses);
+  
+  const allNames= this.totalesPorMeses.map(res=> res.mes);
+  const allValues=this.totalesPorMeses.map(res=> res.total);
+console.log('object',allNames);
+console.log('object',allValues);
+
+        this.barChartLabelsSintomas=allNames;
+        this.barChartData= [ 
+          { data: allValues, label: "Meses" }
+          // { data: allValues[1], label: "Junio" },
+          // { data: allValues[2], label: "Julio" },
+]
+
+}
+public barChartColors: Color[] = [
+  { // Euro - Azul
+    backgroundColor: ["#FF7360", "#F16D11", "#46B303", "#99C7A9 ", "#48F2F0 ",
+                      "#127271 ", "#899EEC", "#0234F0 ", "#9902F0 ", "#926B93 ","#030203 "],
+    borderColor: 'rgba(231, 231, 231)',
+    hoverBackgroundColor: 'rgba(231, 231, 231)',
+    hoverBorderColor: 'rgba(231, 231, 231)'
+  },
+  
+];
+ 
 
 
 }

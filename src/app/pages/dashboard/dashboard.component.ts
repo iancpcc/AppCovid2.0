@@ -10,6 +10,8 @@ export class DashboardComponent implements OnInit {
   public totalUsuario:Number=0
   public totalRegistradosHoy:Number=0
   public TotalRegistradosMensual:Number=0
+  cargandoCantones=true;
+  listaCantones:any
   cargando=true;
   constructor(private totales:CiudadanosService) { }
 
@@ -21,5 +23,12 @@ export class DashboardComponent implements OnInit {
       this.TotalRegistradosMensual=res.RegistrosMes
       this.cargando=false;
     })
+
+    this.totales.totalparroquias()
+    .subscribe(cantones=>{
+      this.listaCantones=cantones;
+      this.cargandoCantones=false;
+    })
+
   }
 }

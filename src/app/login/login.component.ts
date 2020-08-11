@@ -4,7 +4,7 @@ import { LoginService } from '../services/service.index';
 import { Router } from '@angular/router';
 import { UsuarioModel } from '../models/usuario.model';
 
-
+declare function init_plugins()
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ roles=3;
     private login:LoginService
     
    ) {
-     
+    init_plugins();
     }
 
    ngOnInit(): void {
@@ -49,10 +49,10 @@ roles=3;
         location.reload()
         }
         else if(cantidadRoles>1){
-          location.reload()
           this.login.guardarRol('SecondaryAdmin')
           this.router.navigateByUrl('/dashboard');
           Swal.close();
+          location.reload()
           }
         else{
           Swal.fire({

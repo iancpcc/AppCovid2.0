@@ -1,17 +1,5 @@
-<div style="width: 100%;" *ngIf="pieChartData" >
-  <div>
-    <div>
-      <div class="chart">
-        <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"              
-          [options]="pieChartOptions"
-          [plugins]="pieChartPlugins"
-          [colors]="pieChartColors"
-          [legend]="pieChartLegend">
-        </canvas>
-      </div>
-    </div>
-  </div>
+<div style="width: 100%;" >
+  <canvas baseChart [datasets]="barChartData" 
+  [colors]="barChartColors" [labels]="barChartLabelsSintomas" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+ </canvas>
   <div>

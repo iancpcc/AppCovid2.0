@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/AppVinculacion",
+    "public": "./dist/AppVinculacion",
     "ignore": [
       "firebase.json",
       "**/.*",

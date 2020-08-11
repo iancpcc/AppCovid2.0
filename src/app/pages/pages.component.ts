@@ -10,6 +10,7 @@ declare function init_plugins()
 export class PagesComponent implements OnInit, AfterViewInit {
  
   constructor() { 
+    init_plugins();
   }
  
   

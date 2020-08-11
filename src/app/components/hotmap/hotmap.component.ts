@@ -14,9 +14,33 @@ export class HotmapComponent implements OnInit,AfterViewInit,OnDestroy {
 
   @ViewChild('mapid') mapContainer;
   constructor(private coordenadas:CiudadanosService){
-
     
   }
+//Declaracion de arrays
+
+coord = [];
+coord2 = [];
+
+coord3 = [];
+coord4 = [];
+
+coord5 = [];
+coord6 = [];
+options = {
+    
+  layers: [
+    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: ""
+    })
+  ],
+  zoom: 12,
+  center: L.latLng(-1.2571434, -78.6566384)
+};
+
+
+//Fin array
+
 
   ngAfterViewInit(){
     this.cargarCalorLeaflet();
@@ -33,29 +57,92 @@ export class HotmapComponent implements OnInit,AfterViewInit,OnDestroy {
   
 map
 cargarCalorLeaflet(){
+  var mapa0 = new L.LayerGroup();
+    var mapa1 = new L.LayerGroup();
+    var mapa2 = new L.LayerGroup();
+    var mapa3 = new L.LayerGroup();
 
-   this.map= L.map(this.mapContainer.nativeElement,
-  
+    this.coordenadas.obtenerCoordenadasCiudadanos()
+    .subscribe(coors => {
+      L.heatLayer(coors).addTo(mapa0);
+    },error=>{
+      Swal.fire({
+        allowOutsideClick:false,
+        title: 'Aviso',
+        text: 'No se pudieron obtener datos del servidor',
+        icon: 'info',
+      });
+    })
+
+
+    this.coordenadas.obtenerCiudadanosMapacalor(0,3).subscribe(res => {
+
+      for (let i = 0; i < res.length; i++) {
+        let j = 0;
+        this.coord = [];
+        this.coord[j] = res[i].x;
+        this.coord[j + 1] = res[i].y;
+        
+        this.coord2[i] = this.coord;
+
+      }
+       L.heatLayer(this.coord2).addTo(mapa1);
+
+    })
+
+    this.coordenadas.obtenerCiudadanosMapacalor(4,7).subscribe(res => {
+
+      for (let i = 0; i < res.length; i++) {
+        let j = 0;
+        this.coord3 = [];
+        this.coord[j] = res[i].x;
+        this.coord[j + 1] = res[i].y;
+       
+        this.coord4[i] = this.coord;
+
+      }
+       L.heatLayer(this.coord4).addTo(mapa2);
+
+    })
+    this.coordenadas.obtenerCiudadanosMapacalor(8,11).subscribe(res => {
+
+      for (let i = 0; i < res.length; i++) {
+        let j = 0;
+        this.coord5 = [];
+        this.coord[j] = res[i].x;
+        this.coord[j + 1] = res[i].y;
+     
+        this.coord6[i] = this.coord;
+
+      }
+       L.heatLayer(this.coord6).addTo(mapa3);
+
+    })
+    var capas_secundarias = {
+      "Todos": mapa0, 
+      "sintomas 1 a 3": mapa1,
+      "sintomas 4 a 7": mapa2,
+      "sintomas 8 a 11": mapa3
+    };
+
+
+   this.map= L.map(this.mapContainer.nativeElement  
   ).setView([-1.2673361,-78.6276993], 17);
 
-var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+ 
+L.control.layers(capas_secundarias).addTo(this.map);
+
+var tiles = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    
 }).addTo(this.map);
 
-this.coordenadas.obtenerCoordenadasCiudadanos()
-.subscribe(coors => {
-  const heat = L.heatLayer(coors).addTo(this.map);
-},error=>{
-  Swal.fire({
-    allowOutsideClick:false,
-    title: 'Aviso',
-    text: 'No se pudieron obtener datos del servidor',
-    icon: 'info',
-  });
-})
+
 
 
 }
+
+
   
 }

@@ -35,8 +35,12 @@ coinciden:boolean=true;
     .then(res=>{      
         this.admin=res;
         this.cargando=false;
+        console.log('profile',res);
         
+        this.rol=this.adminservice.obtenerRol();
+        console.log('rol',this.rol);
        });
+       
 
   }
 }

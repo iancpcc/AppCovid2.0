@@ -57,9 +57,25 @@ export class CiudadanosService {
      }  
     }
 
+    obtenerCiudadanosMapacalor(inicio: number, fin: number){
+      return this.http.get(`${this.url}/listaUbicacionesByLimitSintomas?minimo=${inicio}&maximo=${fin}`)
+      .pipe(
+        map((res: any)=>{
+         return res.ListaCiudadanosPorLimiteSintomas;
+
+        })
+      )
+      
+     }
+
     obtenerTotales(){
       return this.http.get(`${this.url}/totalesUsuariosByIdPerfil/2`)
     }
+    
+    obtenerTotalesSintoma(){
+      return this.http.get(`${this.url}/totalesRegisterBySintoma`).pipe(map
+       (res=>res['TotalesPorSintoma']))
+   }
 
 
     obtenerMeses(){
@@ -71,6 +87,13 @@ export class CiudadanosService {
     obtenerTotalesPorMes(){
       return this.http.get(`${this.url}/totalesRegistrosUltimos6Meses`).pipe(map
         (res=>res['TotalesCiudadanos']))
+    }
+
+    totalparroquias(){
+      return this.http.get(`${this.url}/totalesRegistersByProvincia`)
+      .pipe(
+      map(res=>res)
+      )
     }
 
     

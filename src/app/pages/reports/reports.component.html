@@ -6,12 +6,13 @@
         <div class="col-12 col-lg-6">
             <div class="card flex-fill w-100">
                 <div class="card-header">
-                    <h5 class="card-title">Ciudadanos registrados por Genero</h5>
+                    <h5 class="card-title">Contagiados por Cantón</h5>
                     <h6 class="card-subtitle text-muted"></h6>
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                       <app-doughnutchart></app-doughnutchart>
+                        <app-spinner *ngIf="cargandoCantones" ></app-spinner>
+                       <app-doughnutchart [Cantones]="listaCantones" *ngIf="!cargandoCantones"></app-doughnutchart>
                     </div>
                 </div>
             </div>
@@ -20,13 +21,13 @@
         <div class="col-12 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Estadistica de Enfermos</h5>
+                    <h5 class="card-title">Contagiados por Meses</h5>
                     <h6 class="card-subtitle text-muted"></h6>
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                        <app-spinner *ngIf="cargando" ></app-spinner>
-                       <app-barchart [totalesPorMeses]="totalesMeses" *ngIf="!cargando"></app-barchart>
+                        <app-spinner *ngIf="cargandoMeses" ></app-spinner>
+                       <app-barchart [totalesPorMeses]="totalesMeses" *ngIf="!cargandoMeses"></app-barchart>
                     </div>
                 </div>
             </div>
@@ -35,12 +36,13 @@
         <div class="col-12 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Curva de Enfermos</h5>
+                    <h5 class="card-title">Estadisticas por Sintomas</h5>
                     <h6 class="card-subtitle text-muted"></h6>
                 </div>
                 <div class="card-body">
-                    <div class="chart chart-sm">
-                        <app-spline></app-spline>
+                    <div class="chart ">
+                        <app-spinner *ngIf="cargandoSintomas" ></app-spinner>
+                        <app-spline [Sintomas]="listaSintomas" *ngIf="!cargandoSintomas"></app-spline>
                     </div>
                 </div>
             </div>
