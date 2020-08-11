@@ -18,6 +18,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 //Datepicker
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
   declarations: [
     HotmapComponent,
@@ -46,7 +48,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ChartsModule,
     NgxPaginationModule,
-    NgbModule
+    NgbModule,
+    LeafletModule 
   ],
   providers:[ ]
 })

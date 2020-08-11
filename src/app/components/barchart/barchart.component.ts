@@ -30,19 +30,15 @@ public barChartLabelsSintomas: Label[] ;
 public barChartData: ChartDataSets[] ;
 
 ngOnInit(){
-  console.log('meses',this.totalesPorMeses);
   
   const allNames= this.totalesPorMeses.map(res=> res.mes);
   const allValues=this.totalesPorMeses.map(res=> res.total);
-console.log('object',allNames);
-console.log('object',allValues);
 
         this.barChartLabelsSintomas=allNames;
-        this.barChartData= [ 
-          { data: allValues, label: "Meses" }
+        this.barChartData= [ {data:allValues,label:"Meses segun Contagios"}]
           // { data: allValues[1], label: "Junio" },
           // { data: allValues[2], label: "Julio" },
-]
+
 
 }
 public barChartColors: Color[] = [

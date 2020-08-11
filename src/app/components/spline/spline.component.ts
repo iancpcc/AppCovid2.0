@@ -11,9 +11,15 @@ import { CiudadanosService } from '../../services/ciudadanos/ciudadanos.service'
 export class SplineComponent {
   public barChartOptions: ChartOptions = {
     responsive: true,
-    scales: { xAxes: [{}]},
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
   };
-  
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];

@@ -1,6 +1,7 @@
 <div #mapid id="mapid"
-
-></div>
+leaflet [leafletOptions]="options" 
+(leafletMapReady)="onMapReady($event)">
+</div>
                
            
        
