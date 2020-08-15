@@ -1,16 +1,6 @@
 <div class="container-fluid p-0">
 
-    <div class="row mb-2 mb-xl-3">
-
-        <div class="col-auto ml-auto text-right mt-n1">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
-                    <li class="breadcrumb-item"><a routerLink='/dashboard'>Municipio</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Inicio</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+    
     <div class="row">
         <div class="col-xl-6 col-xxl-5 d-flex">
             <div class="w-100">
@@ -34,7 +24,7 @@
                                 </div>
                                  <app-spinner *ngIf="cargando"></app-spinner>
 
-                                <h1 class="display-5 mt-1 mb-3" *ngIf="!cargando">{{totalUsuario}}</h1>
+                                <h1 class="display-5 mt-1 mb-3 text-center" *ngIf="!cargando">{{totalUsuario}}</h1>
                                
                             </div>
                         </div>
@@ -54,7 +44,7 @@
                                     </div>
                                 </div>
                                 <app-spinner *ngIf="cargando"></app-spinner>
-                                <h1 class="display-5 mt-1 mb-3"  *ngIf="!cargando">{{totalRegistradosHoy}}</h1>
+                                <h1 class="display-5 mt-1 mb-3 text-center"  *ngIf="!cargando">{{totalRegistradosHoy}}</h1>
                                
                             </div>
                         </div>
@@ -78,7 +68,7 @@
                                 </div>
                                 <app-spinner *ngIf="cargando"></app-spinner>
                                 
-                                <h1 class="display-5 mt-1 mb-3" *ngIf="!cargando">{{TotalRegistradosMensual}}</h1>
+                                <h1 class="display-5 mt-1 mb-3 text-center" *ngIf="!cargando">{{TotalRegistradosMensual}}</h1>
                                
                             </div>
                         </div>
@@ -86,7 +76,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col mt-0">
-                                        <h5 class="card-title">Enfermos</h5>
+                                        <h5 class="card-title">Contagiados</h5>
                                     </div>
 
                                     <div class="col-auto">
@@ -99,7 +89,7 @@
                                     </div>
                                 </div>
                                 <app-spinner *ngIf="cargando"></app-spinner>
-                                <h1 class="display-5 mt-1 mb-3" *ngIf="!cargando">{{totalUsuario}}</h1>
+                                <h1 class="display-5 mt-1 mb-3 text-center" *ngIf="!cargando">{{totalUsuario}}</h1>
                               
                             </div>
                         </div>

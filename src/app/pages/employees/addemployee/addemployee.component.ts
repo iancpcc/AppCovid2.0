@@ -53,8 +53,14 @@ ep="ep"
         this.empleadosMethods.messagePopup('error');
        }
        ,error=>{
-        console.log('error',error);
-        this.empleadosMethods.messagePopup('custom',"Cedula o Correo Repetidos");
+        const sms=error['error'].error
+        if(sms){
+
+          this.empleadosMethods.messagePopup('custom',sms);
+        }
+        else{
+          this.empleadosMethods.messagePopup('custom',"Ha ocurrido un error");
+        }
       })
 
     }

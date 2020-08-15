@@ -22,8 +22,6 @@ export class DoughnutchartComponent implements OnInit {
  constructor() { }
 
  ngOnInit() {
-  console.log('cantones',this.Cantones);
-  
   const allNames= this.Cantones['TotalesPorProvincia'].map(res=> res.canton);
   const allValues= this.Cantones['TotalesPorProvincia'].map(res=> res.total);
   this.barChartLabels=allNames;

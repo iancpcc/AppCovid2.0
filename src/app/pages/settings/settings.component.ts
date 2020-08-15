@@ -31,13 +31,110 @@ rol:any
 //Contraseña
 confirmText=''
 coinciden:boolean=true;
+
+cedulaValida:boolean;
+correoValido:boolean;
+usuarioValido:boolean;
   ngOnInit() {
     this.admin=new EmpleadoModel();
     this.adminpass=new EmpleadoModel();
-    // this.nuevoAdmin=new EmpleadoModel();
-
     this.obtenerAdministrador();
+    this.cedulaValida=true;
+      this.correoValido=true;
+      this.usuarioValido=true;
 
+  }
+  validarCedula(cedula:string){
+     
+    var cedula =  cedula.trim();
+          var digitoVerificador =cedula.charAt(9);
+          var cedulaArray =[cedula.charAt(0),cedula.charAt(1),cedula.charAt(2),cedula.charAt(3),cedula.charAt(4),cedula.charAt(5),cedula.charAt(6),cedula.charAt(7),cedula.charAt(8)];
+          var coeficientes=[2,1,2,1,2,1,2,1,2];
+
+          var suma=0;
+          for (var i =0;i<=8;i++){
+          var multi = coeficientes[i]* parseInt( cedulaArray[i]);
+          if(multi >=10){
+          multi=multi-9;
+                        }
+          suma=suma+multi;
+          }
+
+          var superior =suma - (suma%10) + 10;
+          var digitoResultado=superior-suma;
+
+          if(digitoResultado.toString() == digitoVerificador){
+            return true;
+          }
+          else{
+        return false;
+          }
+  }
+
+  existeCedula(cedula:string){
+    if(cedula.length==10){
+      this.empleado.cedulaExistente(cedula)
+      .subscribe((resp:any)=>{
+        const resExiste=resp.existe;
+        const resID=resp.ID;
+        console.log('object',resp);
+        
+        if(!resExiste && resID==0  || resID==this.admin.idUsuario){
+          console.log('cedula',this.cedulaValida);
+          this.cedulaValida=true;
+        
+        }
+        else{
+          
+          this.cedulaValida=false;
+          console.log('cedula',this.cedulaValida);
+
+        }
+        
+      })
+      
+    }
+    
+  }
+
+  existeCorreo(correo:string){
+    if(correo.length>=5){
+      this.empleado.correoExistente(correo)
+      .subscribe((resp:any)=>{
+        const resExiste=resp.existe;
+        const resID=resp.ID;
+        if(!resExiste && resID==0 || resID==this.admin.idUsuario){
+        this.correoValido=true;
+        }
+        else{
+        this.correoValido=false;
+
+        }
+        
+      })
+      
+    }
+    
+  }
+
+  existeUsuario(username:string){
+    if(username.length>=4){
+      this.empleado.userNameExistente(username)
+      .subscribe((resp:any)=>{
+        const resExiste=resp.existe;
+        const resID=resp.ID;
+        if(!resExiste && resID==0 || resID==this.admin.idUsuario){
+        this.usuarioValido=true;
+        }
+        else{
+        this.usuarioValido=false;
+
+        }
+        
+      })
+      
+    }
+    
   }
 
  async obtenerAdministrador(){
@@ -74,7 +171,6 @@ coinciden:boolean=true;
       })
 
     this.rol=this.adminservice.obtenerRol();
-    console.log('rol',this.rol);
 
   }
 
@@ -91,8 +187,6 @@ coinciden:boolean=true;
       })
       
       Swal.showLoading();
-    console.log('admin a editar:',this.admin);
-
     this.empleado.actualizarEmpleado(this.admin,this.admin.idUsuario).subscribe(res=>
       {
       if(res!=null){
@@ -100,12 +194,12 @@ coinciden:boolean=true;
       this.empleadosMethods.messagePopup("successedit");
        this.router.navigate(['/settings']);
        this.obtenerAdministrador();
+       location.reload();
        return;
      }
      Swal.close();
      this.empleadosMethods.messagePopup('error');
       },(error:any)=>{ //Error
-        console.log('errpr',error);
         const sms=error['error'].error
         if(sms){
 
@@ -117,13 +211,14 @@ coinciden:boolean=true;
       });
 
     }
+    else{
+      this.empleadosMethods.messagePopup("custom","Campos Vacios o Repetidos")
+    }
 
   }
 
   editPassAdmin(form:NgForm){
 
-    // console.log('admin a editar:',form);
-    
     if (this.validarForm(form) && this.validarContraseñas(form) )
     {
       
@@ -136,34 +231,40 @@ coinciden:boolean=true;
       })
       
       Swal.showLoading();
-    console.log('pass a editar:',this.adminpass);
     this.empleado.actualizarEmpleado(this.adminpass,this.adminpass.idUsuario).subscribe(res=>
       {
       if(res!=null){
         Swal.close();
-      this.empleadosMethods.messagePopup("success");
-       this.router.navigate(['/profile']);
-       return;
+      this.empleadosMethods.messagePopup("custom","Contraseña Actualizada, Inicie Sesion!!");
+      
+      this.adminservice.logout();
+      setTimeout(function(){},2000); 
+      this.router.navigate(["/login"]);
+      console.log('paso ates de sperar');
+      return;
      }
      Swal.close();
      this.empleadosMethods.messagePopup('error');
       },(error:any)=>{ //Error
-        console.log('errpr',error);
         const sms=error['error'].error
         if(sms){
 
           this.empleadosMethods.messagePopup('custom',sms);
         }
         else{
-          this.empleadosMethods.messagePopup('custom',"Ha ocurrido un error");
+          this.empleadosMethods.messagePopup('custom',"Ha ocurrido un error, Intente mas tarde");
         }
       });
 
+    }
+    else{
+      this.empleadosMethods.messagePopup("custom","Contraseñas no Coinciden")
     }
 
     
 
   }
+
 
   evaluarPass(pass:string){
     if(pass.length!=0){

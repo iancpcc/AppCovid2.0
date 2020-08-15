@@ -59,7 +59,13 @@ export class EditadminComponent implements OnInit {
                   this.empleadosMethods.messagePopup('error');
                 },error=>{
                   const sms=error['error'].error
-                  this.empleadosMethods.messagePopup('custom',sms);
+                  if(sms){
+
+                    this.empleadosMethods.messagePopup('custom',sms);
+                  }
+                  else{
+                    this.empleadosMethods.messagePopup('custom',"Ha ocurrido un error");
+        }
                 });
               }
           

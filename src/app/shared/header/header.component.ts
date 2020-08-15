@@ -34,7 +34,6 @@ usuario:string
       this.empleado.obtenerEmpleadoxID(id)
       .subscribe((ep:Empleado)=>{
         this.usuario=ep.user;
-    console.log('rol header',this.usuario);
         
 
       })
@@ -43,8 +42,8 @@ usuario:string
   }
 
   salir(){
-    this.router.navigate(["/login"]);
     this.login.logout();
+    this.router.navigate(["/login"]);
   }
 
 }

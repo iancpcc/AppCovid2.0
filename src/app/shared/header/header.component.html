@@ -17,7 +17,7 @@
                        Accesos rápidos
                     </div>
                     <div class="list-group">
-                        <a routerLink='/empleados' class="list-group-item">
+                        <a routerLink='/empleados' class="list-group-item"  *ngIf="roles!='RoleEmployee'">
                             <div class="row no-gutters align-items-center">
                                 <div class="col-2">
                                     <i class="far fa-user" style="color: rgb(224, 206, 105);"></i>
@@ -69,10 +69,11 @@
   </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" routerLink="/profile"><i class="align-middle mr-1" data-feather="user"></i> Perfil</a>
+                    <a class="dropdown-item" routerLink="/settings"><i class="align-middle mr-1" data-feather="settings"></i> Configuración</a>
                     <div class="dropdown-divider"></div>
                     <!-- <a class="dropdown-item" href="pages-settings.html"><i class="align-middle mr-1" data-feather="settings"></i> Settings & Privacy</a> -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" (click)="salir()" >Salir</a>
+                    <a class="dropdown-item" (click)="salir()" ><i class="align-middle mr-1" data-feather="log-in"></i>Salir</a>
                 </div>
             </li>
         </ul>

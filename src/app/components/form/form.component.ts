@@ -6,6 +6,7 @@ import { EmpleadoModel } from '../../models/empleado.model';
 import { DatePipe } from '@angular/common';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeesService } from '../../services/empleados/employees.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -36,17 +37,22 @@ usuarioValido:boolean;
 constructor( private router:Router,private empleadoService:EmployeesService) { }
 
   ngOnInit(): void {
-    console.log('actioon',this.action);
     if(this.action=='insert'){
       this.checked=true;
       this.nuevoEmpleado=new EmpleadoModel();
+      this.cedulaValida=false;
+      this.correoValido=false;
+      this.usuarioValido=false;
     }
-
+   
     var fechanuevo = new Date(this.nuevoEmpleado.fechaNacimiento); 
     var day = fechanuevo.getDate();
     var monthIndex = fechanuevo.getMonth();
     var year = fechanuevo.getFullYear();
     this.date={ year:year,month:monthIndex+1,day:day+1 };
+    this.cedulaValida=true;
+      this.correoValido=true;
+      this.usuarioValido=true;
     
   }
 
@@ -80,14 +86,20 @@ constructor( private router:Router,private empleadoService:EmployeesService) { }
   existeCedula(cedula:string){
     if(cedula.length==10){
       this.empleadoService.cedulaExistente(cedula)
-      .subscribe(resp=>{
+      .subscribe((resp:any)=>{
+        const resExiste=resp.existe;
+        const resID=resp.ID;
         console.log('object',resp);
         
-        if(resp){
-        this.cedulaValida=true;
+        if(!resExiste && resID==0  || resID==this.nuevoEmpleado.idUsuario){
+          console.log('cedula',this.cedulaValida);
+          this.cedulaValida=true;
+        
         }
         else{
-        this.cedulaValida=false;
+          
+          this.cedulaValida=false;
+          console.log('cedula',this.cedulaValida);
 
         }
         
@@ -100,9 +112,10 @@ constructor( private router:Router,private empleadoService:EmployeesService) { }
   existeCorreo(correo:string){
     if(correo.length>=5){
       this.empleadoService.correoExistente(correo)
-      .subscribe(resp=>{
-        console.log('object',resp);
-       if(resp){
+      .subscribe((resp:any)=>{
+        const resExiste=resp.existe;
+        const resID=resp.ID;
+        if(!resExiste && resID==0 || resID==this.nuevoEmpleado.idUsuario){
         this.correoValido=true;
         }
         else{
@@ -119,10 +132,10 @@ constructor( private router:Router,private empleadoService:EmployeesService) { }
   existeUsuario(username:string){
     if(username.length>=4){
       this.empleadoService.userNameExistente(username)
-      .subscribe(resp=>{
-        console.log('object',resp);
-        
-        if(resp){
+      .subscribe((resp:any)=>{
+        const resExiste=resp.existe;
+        const resID=resp.ID;
+        if(!resExiste && resID==0 || resID==this.nuevoEmpleado.idUsuario){
         this.usuarioValido=true;
         }
         else{
@@ -149,7 +162,6 @@ constructor( private router:Router,private empleadoService:EmployeesService) { }
 }
 activatePassInput(){
   this.checked=!this.checked;
-  console.log('atributo',this.checked);
 
 }
 
@@ -174,8 +186,6 @@ evaluarPass(pass:string){
     }
 
     validarContraseñas(form:NgForm){
-      console.log('form',form.controls['confirm'].value);
-      
       if(form.controls['confirm'].value ==this.nuevoEmpleado.password ){
         return true;
       }
@@ -201,10 +211,11 @@ evaluarPass(pass:string){
   }
   
     public postEmpleado(form:NgForm){
-      console.log('correo',this.correoValido);
-      console.log('user',this.usuarioValido);
+      console.log('datos',this.usuarioValido);
+      console.log('datos',this.correoValido);
+      console.log('datos',this.cedulaValida);
       
-      if (this.validarForm(form) && !this.correoValido  && !this.usuarioValido)
+      if (this.validarForm(form) && this.correoValido  && this.usuarioValido && this.cedulaValida)
       {
         if(this.validarCedula(this.nuevoEmpleado.cedulaUsuario)){
 
@@ -216,7 +227,6 @@ evaluarPass(pass:string){
         else{
           this.nuevoEmpleado.administrador=0;
         }
-        console.log('esto se emmite:',this.nuevoEmpleado);
         
         if(!this.checked){
           this.salidaEmpleado.emit(this.nuevoEmpleado);

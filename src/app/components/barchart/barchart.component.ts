@@ -36,9 +36,6 @@ ngOnInit(){
 
         this.barChartLabelsSintomas=allNames;
         this.barChartData= [ {data:allValues,label:"Meses segun Contagios"}]
-          // { data: allValues[1], label: "Junio" },
-          // { data: allValues[2], label: "Julio" },
-
 
 }
 public barChartColors: Color[] = [

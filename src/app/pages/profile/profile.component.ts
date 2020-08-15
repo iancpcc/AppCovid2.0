@@ -26,6 +26,7 @@ constructor(private adminservice:LoginService,
 admin:EmpleadoModel
 date:any
 rol:any
+rolPerfil:string
 //Contraseña
 confirmText=''
 coinciden:boolean=true;
@@ -35,10 +36,18 @@ coinciden:boolean=true;
     .then(res=>{      
         this.admin=res;
         this.cargando=false;
-        console.log('profile',res);
-        
         this.rol=this.adminservice.obtenerRol();
-        console.log('rol',this.rol);
+        if(this.rol== 'MainAdmin'){
+          this.rolPerfil='Administrador Principal'
+        }
+        else if(this.rol== 'SecondaryAdmin'){
+          this.rolPerfil='Administrador Auxiliar'
+
+        }
+        else{
+          this.rolPerfil='Empleado'
+
+        }
        });
        
 

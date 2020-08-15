@@ -70,32 +70,18 @@ actualizarEmpleado(empleado:EmpleadoModel,idEmpleado:number){
      }
 
      cedulaExistente(cedula:string){
-      return  this.http.get(`${this.url}/existcedula/${cedula}`)
-      .pipe(
-        map((res:any)=>{
-          return res.data;
-        })
-      );
+      return  this.http.get(`${this.url}/existeCedula?cedula=${cedula}`)
+      
      }
 
      correoExistente(correo:string){
-      return  this.http.get(`${this.url}/existcorreo/${correo}`)
-      .pipe(
-        map((res:any)=>{
-          return res.data;
-        })
-      );
-
+      return  this.http.get(`${this.url}/existeCorreo?correo=${correo}`)
+      
      }
 
      userNameExistente(username:string){
-      return  this.http.get(`${this.url}/existusuario/${username}`)
-      .pipe(
-        map((res:any)=>{
-          return res.data;
-        })
-      );
-
+      return  this.http.get(`${this.url}/existeUsuario?usuario=${username}`)
+      
      }
 
      getHeader(){

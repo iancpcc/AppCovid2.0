@@ -72,7 +72,6 @@ buscarUsuario(termino:string){
 }
 
 deleteEmployee(id:number){
-  //console.log("id",id);
   Swal.fire({
     title: 'Estas Seguro?',
     text: "No podras revertir el cambio!",
@@ -80,11 +79,16 @@ deleteEmployee(id:number){
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, Borrar!'
-  }).then((result) => {
+    confirmButtonText: 'Si, Borrar!',
+
+
+  }
+  )
+  .then((result) => {
+
     if (result.value) {
+      
       this.empleados.eliminarEmpleado(id).subscribe(res=>{
-        console.log('eliminar',res);
         
         if(res!=null){
 
@@ -96,24 +100,23 @@ deleteEmployee(id:number){
           this.persons=[];
           this.cargando=true;
           this.cargarEmpleados();
+          Swal.close();
 
         }
       },error=>{
+        Swal.close();
         Swal.fire({
           title: 'Error',
           text: 'Ocurrio un problema al eliminar el registro',
           icon: 'error',
           timer: 1000
         });
-
-      }
+    });
+  }
       
-      
-      );
-    }
-    
-})
    
+})
+
 }
 public messagePopup(type:string,message?:string){
   switch (type) {

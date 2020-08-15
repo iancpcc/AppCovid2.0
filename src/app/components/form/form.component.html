@@ -41,7 +41,7 @@
                     <!-- Cedula -->
                     <div class="form-group col-md-6">
                     <label for="Lced">Cedula</label>
-                    <input type="text" *ngIf="action=='insert'"
+                    <input type="text" 
                     [(ngModel)]="nuevoEmpleado.cedulaUsuario"
                     minlength="10"  
                     maxlength="10" 
@@ -51,23 +51,13 @@
                     required
                     class="form-control" 
                     placeholder="Cedula">
-                    <!-- Contraseña action update -->
-                    <input type="text"  *ngIf="action=='update'"
-                    [(ngModel)]="nuevoEmpleado.cedulaUsuario"
-                    minlength="10"  
-                    maxlength="10" 
-                    #cedulainput
-                    name="cedulaUsuario"
-                    required
-                    class="form-control" 
-                    placeholder="Cedula">
-                    
+                                        
                     <span class="text-danger" 
                     *ngIf="empleado.submitted && 
                     empleado.controls['cedulaUsuario'].errors">Ingrese su Cedula(10 digitos)</span>
                         <!-- FinCedula -->
                     <span class="text-danger" 
-                    *ngIf="cedulaValida">Cedula ya Existe</span>
+                    *ngIf="!cedulaValida && cedulaValida!=undefined">Cedula ya Existe</span>
                     </div>
                     
                     <div class="form-group col-md-6">
@@ -85,7 +75,7 @@
                         *ngIf="empleado.submitted && 
                         empleado.controls['correoUsuario'].errors">Ingrese su Correo</span>
                         <span class="text-danger" 
-                        *ngIf="correoValido">Correo ya Existe</span>
+                        *ngIf="!correoValido && correoValido!=undefined ">Correo ya Existe</span>
                     </div>
                     <!-- Email -->
 
@@ -170,7 +160,7 @@
                         *ngIf="empleado.submitted && 
                         empleado.controls['user'].errors">Ingrese el usuario (Minimo 4 y maximo 10 Caracteres) </span>
                         <span class="text-danger" 
-                        *ngIf="usuarioValido">Usuario ya Existe</span>
+                        *ngIf="!usuarioValido && usuarioValido!=undefined">Usuario ya Existe</span>
                 </div>
                     <div class="col-md-4" *ngIf="action=='update'">
                     <div class="custom-control custom-switch ">

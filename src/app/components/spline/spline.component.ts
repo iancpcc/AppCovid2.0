@@ -42,7 +42,6 @@ export class SplineComponent {
         this.totalcantidad[i]=element['Total']
         i++;
       });
-      // this.barChartLabelsSintomas=this.Sintoma;
           this.barChartData= [
             
             { data: [ this.totalcantidad[0]], label: "Falta de Fiebre" },

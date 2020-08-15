@@ -41,7 +41,6 @@ export class EditemployeeComponent implements OnInit {
   }
 
   actualizar(event:EmpleadoModel){
-    console.log('object',event);
     
       Swal.fire({
         allowOutsideClick:false,
@@ -64,7 +63,13 @@ export class EditemployeeComponent implements OnInit {
      this.empleadosMethods.messagePopup('error');
       },(error:any)=>{
         const sms=error['error'].error
-        this.empleadosMethods.messagePopup('custom',sms);
+        if(sms){
+
+          this.empleadosMethods.messagePopup('custom',sms);
+        }
+        else{
+          this.empleadosMethods.messagePopup('custom',"Ha ocurrido un error");
+        }
       });
   }
 

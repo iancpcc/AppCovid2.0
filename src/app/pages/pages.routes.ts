@@ -14,6 +14,7 @@ import { EditadminComponent } from './admins/editadmin/editadmin.component';
 import { AddadminComponent } from './admins/addadmin/addadmin.component';
 import { RolesGuard } from '../guards/roles.guard';
 import { SettingsComponent } from './settings/settings.component';
+import { EmpleadoGuard } from '../guards/empleado.guard';
 
 
 
@@ -21,9 +22,9 @@ const pagesRoutes: Routes = [
   { path: '', component: PagesComponent,canActivate:[LoginGuard],
   children:[
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'empleados', component: EmployeesComponent },
-  { path: 'empleado/:id', component: EditemployeeComponent },
-  { path: 'empleado', component: AddemployeeComponent },
+  { path: 'empleados', component: EmployeesComponent,canActivate:[EmpleadoGuard]},
+  { path: 'empleado/:id', component: EditemployeeComponent,canActivate:[RolesGuard] },
+  { path: 'empleado', component: AddemployeeComponent,canActivate:[RolesGuard] },
   { path: 'administradores', component: AdminsComponent,canActivate:[RolesGuard] },
   { path: 'administrador/:id', component: EditadminComponent,canActivate:[RolesGuard] },
   { path: 'administrador', component: AddadminComponent,canActivate:[RolesGuard] },

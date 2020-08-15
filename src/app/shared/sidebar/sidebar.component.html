@@ -27,11 +27,11 @@
             </a>
 					</li>
 
-            <li class="sidebar-header">
+            <li class="sidebar-header" *ngIf="rol!='RoleEmployee'">
                 Mantenimiento
             </li>
 
-            <li class="sidebar-item" routerLinkActive="active" >
+            <li class="sidebar-item" routerLinkActive="active" *ngIf="rol!='RoleEmployee'" >
                 <a href="#users" data-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="users"></i> <span class="align-middle">Usuarios</span>
                 </a>

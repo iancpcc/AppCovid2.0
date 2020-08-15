@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header pb-0 mb-0">
-                    <h5 class="card-title mb-0">Configuracion</h5>
+                    <h5 class="card-title mb-0">Configuración</h5>
                 </div>
                 <hr>
 
@@ -43,6 +43,7 @@
                                         <label for="inputFirstName">Nombres</label>
                                         <input type="text" class="form-control" 
                                         [(ngModel)]="admin.nombresUsuario"
+
                                         required
                                         name="inputFirstName" placeholder="Nombres">
                                         <span class="text-danger" 
@@ -67,6 +68,8 @@
                                         <input 
                                         type="text" 
                                         required
+                                        #userinput
+                                           (keyup)="existeUsuario(userinput.value)"
                                         class="form-control" 
                                         [(ngModel)]="admin.user"
                                         name="inputUser" placeholder="Usuario">
@@ -74,29 +77,40 @@
                                         <span class="text-danger" 
                                         *ngIf="root.submitted && 
                                         root.controls['inputUser'].errors">Ingrese el usuario </span>
+                                        <span class="text-danger" 
+                                       *ngIf="!usuarioValido && usuarioValido!=undefined">Usuario ya Existe</span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputLastName">Cédula</label>
                                         <input type="text" 
                                         required
+                                        #cedulainput
+                                        name="cedulaUsuario"
+                                        (keyup)="existeCedula(cedulainput.value)"
                                         class="form-control" 
                                         [(ngModel)]="admin.cedulaUsuario"
                                         name="inputCedula" placeholder="Cedula">
                                         <span class="text-danger" 
                                         *ngIf="root.submitted && 
                                         root.controls['inputCedula'].errors">Ingrese su Cedula</span>
+                                        <span class="text-danger" 
+                                         *ngIf="!cedulaValida && cedulaValida!=undefined">Cedula ya Existe</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail4">Email</label>
                                     <input type="email" 
                                     required
-                                    class="form-control" 
+                                    class="form-control"
+                                    #correoinput
+                                    (keyup)="existeCorreo(correoinput.value)" 
                                     [(ngModel)]="admin.correoUsuario"
                                     name="inputEmail4" placeholder="Email">
                                     <span class="text-danger" 
                                     *ngIf="root.submitted && 
                                     root.controls['inputEmail4'].errors">Ingrese su Correo</span>
+                                    <span class="text-danger" 
+                                    *ngIf="!correoValido && correoValido!=undefined ">Correo ya Existe</span>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputAddress">Dirección</label>

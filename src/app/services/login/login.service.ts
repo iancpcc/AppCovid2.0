@@ -4,6 +4,7 @@ import { EmpleadoModel } from '../../models/empleado.model';
 import { UsuarioModel } from '../../models/usuario.model';
 import { url_services } from '../../config/config';
 
+import * as CryptoJS from 'crypto-js';
 //Operator
 import { map, catchError } from 'rxjs/operators';
 import { isNull } from 'util';
@@ -15,9 +16,29 @@ export class LoginService {
   private url=`${url_services}`
   userToken:string
 
+ 
+
   constructor(private http:HttpClient ) {
     this.leerToken();
   }
+  Encriptar(texto: string) {
+    try {
+      return CryptoJS.AES.encrypt(texto, 'WeBmUnIcIpIo.*').toString();
+      
+    } catch (error) {
+      console.error(error);
+      
+    }
+}
+  Desencriptar(texto: string) {
+    try {
+      
+      var data = CryptoJS.AES.decrypt(texto, 'WeBmUnIcIpIo.*');
+      return data.toString(CryptoJS.enc.Utf8);
+    } catch (error) {
+      console.error(error);
+    }
+}
 
   auth(usuario:UsuarioModel){
     
@@ -34,7 +55,7 @@ export class LoginService {
          ),
          map(rol=>{
            
-           if(rol[0]=='Administrador' || rol[1]=='Administrador') 
+           if(rol[0]=='Administrador' || rol[1]=='Administrador' || rol[0]=='Empleado' || rol[1]=='Empleado') 
            {
             return rol;
           }
@@ -113,11 +134,12 @@ export class LoginService {
  }
 
  guardarRol(rol:string){
-  localStorage.setItem('roldeUsuario',rol);
+  localStorage.setItem('roldeUsuario',this.Encriptar(rol));
 }
 
 obtenerRol(){
- const rol= localStorage.getItem('roldeUsuario');
+  var  rol= localStorage.getItem('roldeUsuario');
+  rol=this.Desencriptar(rol);
  if(rol){
   return rol;
  }
@@ -125,8 +147,8 @@ obtenerRol(){
 }
 
 existeRol(){
- const rol= localStorage.getItem('roldeUsuario');
-
+ var rol= localStorage.getItem('roldeUsuario');
+ rol=this.Desencriptar(rol);
   if(isNull(rol)){
     return false;
 }

@@ -40,8 +40,6 @@ roles=3;
       this.login.auth(this.usuario)
       .subscribe((res:string[])=>{
       let cantidadRoles=res.length;
-      console.log('roles 1',res);
-      
         if(cantidadRoles==1){
         this.login.guardarRol('MainAdmin')
         this.router.navigateByUrl('/dashboard');
@@ -49,7 +47,12 @@ roles=3;
         location.reload()
         }
         else if(cantidadRoles>1){
-          this.login.guardarRol('SecondaryAdmin')
+          if(res[1]=='Empleado' || res[0]=='Empleado'){
+          this.login.guardarRol('RoleEmployee')
+          }
+          else{
+            this.login.guardarRol('SecondaryAdmin')
+          }
           this.router.navigateByUrl('/dashboard');
           Swal.close();
           location.reload()

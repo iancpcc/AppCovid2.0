@@ -63,9 +63,10 @@ cargarEmpleados(){
       confirmButtonText: 'Si, Borrar!'
     }).then((result) => {
       if (result.value) {
+        Swal.showLoading(); 
         this.empleados.eliminarAdministradores(id).subscribe(res=>{
           if(res!=null){
-  
+            Swal.close();
             Swal.fire(
               'Borrado!',
               'Se ha borrado el registro',
@@ -77,6 +78,7 @@ cargarEmpleados(){
   
           }
         },error=>{
+          Swal.close();
           Swal.fire({
             title: 'Error',
             text: 'Ocurrio un problema al eliminar el registro',
